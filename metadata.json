@@ -1,0 +1,6 @@
+{
+  "name": "Arsalan Qasim Portfolio",
+  "description": "A high-fidelity minimalist engineering portfolio for an AI/ML Engineer featuring research, projects, stack, and biography details.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
