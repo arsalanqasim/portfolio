@@ -74,7 +74,7 @@ Crafted with systemic precision.`;
 
   return (
     <>
-      <nav id="header-navbar" className="sticky top-0 z-50 w-full border-b border-[#21262d] bg-[#0a0e14]/90 backdrop-blur-md">
+      <nav id="header-navbar" className="fixed top-0 left-0 right-0 z-50 w-full border-b border-[#21262d] bg-[#0a0e14]/90 backdrop-blur-md">
         <div className="mx-auto flex h-16 max-w-[1240px] items-center justify-between px-6">
           
           {/* Logo Name */}

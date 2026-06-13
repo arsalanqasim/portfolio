@@ -20,7 +20,8 @@ import {
   Maximize2, 
   X, 
   HelpCircle,
-  Code2
+  Code2,
+  Github
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
@@ -173,9 +174,21 @@ export default function ProjectsTab() {
                 </div>
               </div>
 
-              {/* Hover indicator helper */}
-              <div className="mt-4 flex items-center justify-end">
-                <span className="font-mono text-[10px] text-[#58a6ff] opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1 select-none">
+              {/* Action and hover buttons footer */}
+              <div className="mt-5 pt-4 border-t border-[#21262d] flex items-center justify-between gap-4">
+                {project.githubUrl && (
+                  <a
+                    href={project.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={(e) => e.stopPropagation()}
+                    className="flex items-center gap-1.5 border border-[#414752] hover:border-[#58a6ff] px-3 py-1.5 rounded text-[10.5px] font-mono text-[#c0c7d4] hover:text-[#58a6ff] bg-[#0d1117]/80 hover:bg-[#58a6ff]/5 transition-all cursor-pointer select-none"
+                  >
+                    <Github className="h-3.5 w-3.5" />
+                    <span>View Repository</span>
+                  </a>
+                )}
+                <span className="font-mono text-[10px] text-[#58a6ff] opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1 select-none ml-auto">
                   Open Interactive Spec
                   <Maximize2 className="h-3 w-3" />
                 </span>
@@ -354,15 +367,26 @@ export default function ProjectsTab() {
 
               </div>
 
-              {/* Close CTA */}
-              <div className="mt-6 flex justify-end border-t border-[#21262d] pt-4">
+              {/* Close & Repository Actions CTA */}
+              <div className="mt-6 flex items-center justify-between border-t border-[#21262d] pt-4 gap-4">
+                {selectedProject.githubUrl && (
+                  <a
+                    href={selectedProject.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 border border-[#58a6ff] bg-[#58a6ff]/5 px-4 py-2 font-mono text-xs font-semibold text-[#58a6ff] rounded hover:bg-[#58a6ff]/15 transition-all cursor-pointer"
+                  >
+                    <Github className="h-4 w-4" />
+                    <span>Clone Repository</span>
+                  </a>
+                )}
                 <button
                   onClick={() => {
                     setSelectedProject(null);
                     setTriageResults(null);
                     setTriageText('');
                   }}
-                  className="bg-[#21262d] hover:bg-[#30363d] text-[#dfe2eb] px-5 py-2 font-mono text-xs rounded transition cursor-pointer"
+                  className="bg-[#21262d] hover:bg-[#30363d] text-[#dfe2eb] px-5 py-2 font-mono text-xs rounded transition cursor-pointer ml-auto"
                 >
                   Close Specification
                 </button>

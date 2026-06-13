@@ -43,7 +43,7 @@ export default function App() {
       <HeaderNav currentTab={currentTab} setTab={setCurrentTab} />
 
       {/* Main Content Layout Block */}
-      <main className="flex-grow w-full max-w-[1240px] mx-auto px-6 py-12 relative z-10">
+      <main className="flex-grow w-full max-w-[1240px] mx-auto px-6 pt-28 pb-12 relative z-10">
         <AnimatePresence mode="wait">
           <motion.div
             key={currentTab}

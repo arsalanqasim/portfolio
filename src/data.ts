@@ -16,6 +16,7 @@ export const PROJECTS: Project[] = [
     stack: 'Python, Pygame, NumPy',
     impact: 'Demonstrates non-RL learning paths for dynamic obstacle environments.',
     category: 'Reinforcement Learning & AI',
+    githubUrl: 'https://github.com/arsalanqasim/dino-ai',
     detailedSpecs: {
       input: 'Dinosaur screen coordinates, obstacle distances, obstacle velocity',
       output: 'Optimal Action vector [Jump, Duck, Neutral]',
@@ -33,6 +34,7 @@ export const PROJECTS: Project[] = [
     stack: 'Python, NLP Libraries, Scikit-learn',
     impact: 'Reduces manual issue sorting latency by algorithmic routing.',
     category: 'NLP & Intent Systems',
+    githubUrl: 'https://github.com/arsalanqasim/TriageIQ',
     detailedSpecs: {
       input: 'Unstructured issue title and markdown text body',
       output: 'Multiclass classification (Category, Urgency Level [1-4], Handler team)',
@@ -50,6 +52,7 @@ export const PROJECTS: Project[] = [
     stack: 'Python, Tkinter, Pandas, Matplotlib',
     impact: 'Provides secure, localized financial tracking without external API dependencies.',
     category: 'Software Engineering',
+    githubUrl: 'https://github.com/arsalanqasim/Budgy',
     detailedSpecs: {
       input: 'Plain CSV/Excel bank statements or raw transaction strings',
       output: 'Structured classified database (SQLite), spend aggregates',
@@ -67,6 +70,7 @@ export const PROJECTS: Project[] = [
     stack: 'Python, Scikit-learn, Jupyter',
     impact: 'Automates credibility scoring for large-scale text corpus integration.',
     category: 'Machine Learning Pipelines',
+    githubUrl: 'https://github.com/arsalanqasim/fake-news-detector',
     detailedSpecs: {
       input: 'Full article text containing headlines and body',
       output: 'Binary probability score [Reliable vs Fabricated]',

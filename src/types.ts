@@ -15,6 +15,7 @@ export interface Project {
   stack: string;
   impact: string;
   category: string;
+  githubUrl?: string;
   detailedSpecs?: {
     input?: string;
     output?: string;
