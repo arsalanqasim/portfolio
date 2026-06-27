@@ -123,7 +123,7 @@ export default function ResearchTab() {
           <div className="md:col-span-4 flex justify-center md:justify-end">
             <div className="relative group w-64 h-64 sm:w-72 sm:h-72 md:w-64 md:h-64 lg:w-72 lg:h-72 rounded-2xl overflow-hidden border border-[#30363d] bg-[#161b22] hover:border-[#58a6ff]/60 transition-all duration-300 shadow-2xl">
               <img
-                src="assets/profile_image.png?q=80&w=600&auto=format&fit=crop"
+                src="/assets/profile_image.png"
                 alt="Arsalan Qasim Portrait"
                 className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
                 referrerPolicy="no-referrer"

@@ -21,16 +21,18 @@ import {
   X, 
   HelpCircle,
   Code2,
-  Github
+  Github,
+  Activity,
+  Eye
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
 // Help map icons to strings dynamically using Lucide React
 const iconMap: { [key: string]: any } = {
-  Brain: Gamepad2,
-  Bug: Bug,
-  Calculator: Wallet,
-  ShieldAlert: ShieldAlert
+  Activity: Activity,
+  Eye: Eye,
+  Gamepad2: Gamepad2,
+  Bug: Bug
 };
 
 export default function ProjectsTab() {
@@ -312,22 +314,22 @@ export default function ProjectsTab() {
                   </div>
                 )}
 
-                {/* LIVE DEMO: Dino-AI Generations Evolve */}
-                {selectedProject.id === 'dino-ai' && (
+                {/* LIVE DEMO: DQN Drone Lab Agent Training */}
+                {selectedProject.id === 'neon-dqn' && (
                   <div className="border-t border-[#21262d] pt-4 space-y-4">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
                         <Gamepad2 className="h-4 w-4 text-[#58a6ff]" />
-                        <h4 className="font-mono text-xs font-semibold text-[#dfe2eb]">Neuroevolution Iterative Breeding Sandbox</h4>
+                        <h4 className="font-mono text-xs font-semibold text-[#dfe2eb]">DQN Drone Navigation Training Sandbox</h4>
                       </div>
-                      <span className="font-mono text-[10px] text-[#dfe2eb]/60 bg-[#21262d] px-2 py-0.5 rounded">Gen {generationsCount} members</span>
+                      <span className="font-mono text-[10px] text-[#dfe2eb]/60 bg-[#21262d] px-2 py-0.5 rounded">Episode {generationsCount * 300} / 3000</span>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
-                      {/* Evolve action */}
+                      {/* Train action */}
                       <div className="md:col-span-4 flex flex-col justify-center bg-[#0d1117] border border-[#21262d] p-3 rounded">
                         <p className="font-sans text-[10px] text-[#c0c7d4] mb-3 leading-relaxed">
-                          Mutate neural weights of Chrome Dino networks. Breed the top 10% fitness scorers to cross over genetic properties.
+                          Train the Dueling Double DQN agent on 6x32x32 observation tensors with continuous rewards. Observe curriculum learning convergence.
                         </p>
                         <button
                           onClick={triggerMutateBreed}
@@ -335,11 +337,11 @@ export default function ProjectsTab() {
                           className="w-full bg-[#27a640] hover:bg-[#27a640]/90 disabled:opacity-50 text-white font-mono text-[11px] py-1.5 px-3 rounded flex items-center justify-center gap-1.5 cursor-pointer"
                         >
                           <TrendingUp className="h-3.5 w-3.5" />
-                          {mutating ? 'Mutating Genes...' : 'Evolve Next Gen'}
+                          {mutating ? 'Simulating Episodes...' : 'Train 300 Episodes'}
                         </button>
                       </div>
 
-                      {/* Fitness Scores dynamic chart visualizer */}
+                      {/* Path Rewards dynamic chart visualizer */}
                       <div className="md:col-span-8 bg-[#0d1117] border border-[#21262d] p-3.5 rounded flex flex-col justify-end min-h-[110px]">
                         <div className="flex items-end justify-between h-[60px] gap-1 px-4">
                           {dynoScores.map((score, i) => {
@@ -352,13 +354,13 @@ export default function ProjectsTab() {
                                   className="w-full rounded-t bg-[#58a6ff]" 
                                   style={{ height: `${h}px` }}
                                 ></div>
-                                <span className="font-mono text-[8.5px] mt-1 text-[#8b919d]">G{i+1}</span>
+                                <span className="font-mono text-[8.5px] mt-1 text-[#8b919d]">E{(i+1)*300}</span>
                               </div>
                             );
                           })}
                         </div>
                         <div className="mt-2 text-center border-t border-[#21262d] pt-1.5">
-                          <span className="font-mono text-[9px] text-[#c0c7d4]">Best Genetic Gym Score reached: {dynoScores[dynoScores.length - 1]}pts</span>
+                          <span className="font-mono text-[9px] text-[#c0c7d4]">Best Drone Path Reward reached: {dynoScores[dynoScores.length - 1]}pts</span>
                         </div>
                       </div>
                     </div>

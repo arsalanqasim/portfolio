@@ -25,32 +25,29 @@ export default function StackTab() {
   // Map technologies to the internal projects that utilize them
   const techProjectRelation: { [key: string]: { project: string; role: string }[] } = {
     'PyTorch': [
-      { project: 'GlycoTwin', role: 'Continuous-Depth ODE Integration gradient solving' }
+      { project: 'GlycoTwin', role: 'Continuous-Depth ODE Integration gradient solving' },
+      { project: 'Driver Drowsiness Detection', role: 'Fine-tuning YOLOv8s real-time object detection model' }
     ],
     'Scikit-learn': [
-      { project: 'TriageIQ', role: 'Support ticket routing SVM Classification' },
-      { project: 'Fake News Def', role: 'Credibility logistics and documentation modeling' }
-    ],
-    'TensorFlow': [
-      { project: 'Dino-AI', role: 'Alternate evolutionary state deep controller weight tests' }
+      { project: 'NLP GitHub Issue Triage Tool', role: 'Standardized taxonomy SVM text classification' }
     ],
     'Neural ODEs': [
-      { project: 'GlycoTwin', role: 'Dynamic biological system model trajectory solver' }
+      { project: 'GlycoTwin', role: 'Dynamic biological system model trajectory solver with constraints' }
     ],
     'Python': [
       { project: 'All Catalog Projects', role: 'Primary core algorithmic language framework' }
     ],
     'Git/GitHub': [
-      { project: 'TriageIQ', role: 'Triage ticket simulation pipeline hooks' }
+      { project: 'All Catalog Projects', role: 'Version control and public repository hosting' }
     ],
     'NumPy': [
-      { project: 'Dino-AI', role: 'High-speed matrix multiplication of neuro-genes' }
+      { project: 'Neon DQN Drone Lab & GlycoTwin', role: 'State tensor formulation, matrix mathematical operations, and grid environments' }
     ],
     'Pandas': [
-      { project: 'Budgy', role: 'Automated categorical CSV/Excel statement compiler' }
+      { project: 'GlycoTwin', role: 'Processing OhioT1DM/Shanghai T2DM clinical datasets' }
     ],
     'Matplotlib': [
-      { project: 'Budgy', role: 'Expense aggregates visual chart plotting renderer' }
+      { project: 'GlycoTwin', role: 'Plotting glucose dynamics evaluation trajectories and error bounds' }
     ]
   };
 
