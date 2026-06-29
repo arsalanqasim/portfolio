@@ -3,67 +3,95 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { useState } from 'react';
-import { Tab } from './types';
-import HeaderNav from './components/HeaderNav';
-import ResearchTab from './components/ResearchTab';
-import ProjectsTab from './components/ProjectsTab';
-import StackTab from './components/StackTab';
-import AboutTab from './components/AboutTab';
-import FooterNav from './components/FooterNav';
+import { useState, useEffect } from 'react';
+import { Section } from './types';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import Hero from './components/Hero';
+import FeaturedWork from './components/FeaturedWork';
+import Projects from './components/Projects';
+import Experience from './components/Experience';
+import Skills from './components/Skills';
+import About from './components/About';
+import SectionWrapper from './components/SectionWrapper';
 import PortfolioChatbot from './components/PortfolioChatbot';
-import { motion, AnimatePresence } from 'motion/react';
+
+const SECTIONS: Section[] = ['home', 'work', 'experience', 'skills', 'about'];
 
 export default function App() {
-  const [currentTab, setCurrentTab] = useState<Tab>('research');
+  const [activeSection, setActiveSection] = useState<Section>('home');
 
-  // Render the corresponding tab component dynamically
-  const renderTabContent = () => {
-    switch (currentTab) {
-      case 'research':
-        return <ResearchTab key="research" />;
-      case 'projects':
-        return <ProjectsTab key="projects" />;
-      case 'stack':
-        return <StackTab key="stack" />;
-      case 'about':
-        return <AboutTab key="about" />;
-      default:
-        return <ResearchTab key="research" />;
-    }
-  };
+  useEffect(() => {
+    const observers: IntersectionObserver[] = [];
+
+    SECTIONS.forEach((id) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            setActiveSection(id);
+          }
+        },
+        { rootMargin: '-40% 0px -45% 0px', threshold: 0 }
+      );
+
+      observer.observe(el);
+      observers.push(observer);
+    });
+
+    return () => observers.forEach((o) => o.disconnect());
+  }, []);
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#0a0e14] text-[#dfe2eb] relative overflow-x-hidden">
-      
-      {/* Background Matrix Mesh Element */}
-      <div className="pointer-events-none absolute inset-0 grid-bg-pattern opacity-10"></div>
-      
-      {/* Dynamic Header Component */}
-      <HeaderNav currentTab={currentTab} setTab={setCurrentTab} />
+    <div className="min-h-screen flex flex-col bg-canvas text-ink">
+      <Header activeSection={activeSection} />
 
-      {/* Main Content Layout Block */}
-      <main className="flex-grow w-full max-w-[1240px] mx-auto px-6 pt-28 pb-12 relative z-10">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={currentTab}
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -12 }}
-            transition={{ duration: 0.25, ease: 'easeInOut' }}
-          >
-            {renderTabContent()}
-          </motion.div>
-        </AnimatePresence>
+      <main className="flex-grow w-full max-w-5xl mx-auto px-6">
+        <Hero />
+
+        <SectionWrapper
+          id="work"
+          label="Selected work"
+          title="Projects I've built"
+          subtitle="Machine learning, computer vision, and automation — with real metrics where I have them."
+        >
+          <div className="space-y-10">
+            <FeaturedWork />
+            <Projects />
+          </div>
+        </SectionWrapper>
+
+        <SectionWrapper
+          id="experience"
+          label="Experience"
+          title="Where I've worked"
+          subtitle="Freelance AI engineering and client automation — measured by outcomes, not slide decks."
+        >
+          <Experience />
+        </SectionWrapper>
+
+        <SectionWrapper
+          id="skills"
+          label="Skills"
+          title="What I work with"
+          subtitle="Hover a skill to see where I've used it."
+        >
+          <Skills />
+        </SectionWrapper>
+
+        <SectionWrapper
+          id="about"
+          label="About"
+          title="A bit about me"
+        >
+          <About />
+        </SectionWrapper>
       </main>
 
-      {/* Dynamic Footer Component */}
-      <FooterNav />
-
-      {/* Persistent Floating Portfolio Chatbot */}
+      <Footer />
       <PortfolioChatbot />
-
     </div>
   );
 }
-

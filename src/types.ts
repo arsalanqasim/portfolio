@@ -3,15 +3,14 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-export type Tab = 'research' | 'projects' | 'stack' | 'about';
+export type Section = 'home' | 'work' | 'experience' | 'skills' | 'about';
 
 export interface Project {
   id: string;
   title: string;
-  icon: string; // lucide icon name
+  icon: string;
   tag: string;
   description: string;
-  logic: string;
   stack: string;
   impact: string;
   category: string;
@@ -19,15 +18,8 @@ export interface Project {
   detailedSpecs?: {
     input?: string;
     output?: string;
-    complexity?: string;
-    algorithm?: string;
+    approach?: string;
   };
-}
-
-export interface SpecRow {
-  key: string;
-  value: string;
-  isStatus?: boolean;
 }
 
 export interface HistoryItem {
@@ -37,7 +29,12 @@ export interface HistoryItem {
   description: string;
 }
 
-export interface TerminalLine {
-  text: string;
-  type: 'input' | 'output' | 'error' | 'success';
+export interface SkillGroup {
+  title: string;
+  items: { name: string; usedIn: string }[];
+}
+
+export interface FocusItem {
+  category: string;
+  items: string[];
 }
