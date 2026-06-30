@@ -1,0 +1,32 @@
+[
+  {
+    "id": "concept-01",
+    "previewUrl": "icon-silhouette",
+    "version": "v0.1.0",
+    "rating": 4,
+    "pros": ["Highly recognizable silhouette", "Clean organic vector layout"],
+    "cons": ["Tail thickness limits tight-climb bending"],
+    "status": "APPROVED",
+    "notes": "Approved for initial layout prototyping. Adjust tail joints in v0.2."
+  },
+  {
+    "id": "concept-02",
+    "previewUrl": "icon-silhouette",
+    "version": "v0.1.0",
+    "rating": 2,
+    "pros": ["Detailed skin scaling visual cues"],
+    "cons": ["High DOM node complexity", "Breaks minimal aesthetic"],
+    "status": "REJECTED",
+    "notes": "Too cartoonish. Fails Rule 9: Avoid cartoon graphics."
+  },
+  {
+    "id": "concept-03",
+    "previewUrl": "icon-silhouette",
+    "version": "v0.2.0",
+    "rating": 3,
+    "pros": ["Articulated eye-lid vectors", "Dynamic pupil scale shapes"],
+    "cons": ["Gaze targets require math optimization"],
+    "status": "WIP",
+    "notes": "Active draft for the Face Exploration phase."
+  }
+]

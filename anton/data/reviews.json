@@ -1,0 +1,19 @@
+[
+  {
+    "conceptId": "ANT-FACE-001",
+    "reviewer": "Arsalan Qasim",
+    "date": "2026-06-30T18:20:00Z",
+    "scores": {
+      "silhouette": 8,
+      "intelligence": 9,
+      "curiosity": 8,
+      "timelessness": 9,
+      "brandRecognition": 9,
+      "portfolioFit": 9,
+      "animationPotential": 8,
+      "overall": 8.5
+    },
+    "decision": "Lock Candidate",
+    "notes": "Excellent head-to-body proportion. Eye sockets feel intelligent."
+  }
+]

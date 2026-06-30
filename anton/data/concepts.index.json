@@ -1,0 +1,19 @@
+[
+  {
+    "id": "ANT-FACE-001",
+    "imageUrl": "assets/concepts/face/v0.2/ANT-FACE-001.png",
+    "thumbnailUrl": "assets/concepts/face/v0.2/ANT-FACE-001.png",
+    "category": "v0.2",
+    "version": "v0.2",
+    "tags": [
+      "face",
+      "eyes",
+      "almond",
+      "v0.2"
+    ],
+    "rating": 4,
+    "status": "WIP",
+    "notes": "Almond-shaped eye studies for the face exploration milestone.",
+    "date": "2026-06-30T14:23:58.035Z"
+  }
+]

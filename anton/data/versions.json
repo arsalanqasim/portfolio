@@ -1,0 +1,42 @@
+[
+  {
+    "version": "v0.1.0",
+    "date": "2026-06-30",
+    "summary": "Initial Character Studio release. Sets up architecture, config schemas, and design guidelines.",
+    "decisions": [
+      "Philosophy set: quiet explorer mascot",
+      "No animation timeline in v0.1: design studio shell focused",
+      "Created structured DNA parameters"
+    ],
+    "filesChanged": [
+      "anton/index.html",
+      "anton/style.css",
+      "anton/design-tokens.css",
+      "anton/data/Anton_DNA.json",
+      "anton/data/project.json",
+      "anton/state/workspace.json"
+    ],
+    "completed": true
+  },
+  {
+    "version": "v0.2.0",
+    "date": "Scheduled",
+    "summary": "Face Exploration. Eye scaling, pupil dilations, and head-turning gaze tracking variables.",
+    "decisions": [
+      "Establish camera angle parameters",
+      "Define standard vector eye limits"
+    ],
+    "filesChanged": [
+      "anton/js/components/face.js"
+    ],
+    "completed": false
+  },
+  {
+    "version": "v0.3.0",
+    "date": "Scheduled",
+    "summary": "Expression System. Morphing logic for the 6 core emotions (Neutral, Curious, Focused, Happy, Sleepy, Alert).",
+    "decisions": [],
+    "filesChanged": [],
+    "completed": false
+  }
+]

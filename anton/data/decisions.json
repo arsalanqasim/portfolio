@@ -1,0 +1,34 @@
+[
+  {
+    "id": "#01",
+    "category": "Speech & Voice",
+    "status": "LOCKED 🔒",
+    "date": "2026-06-30",
+    "description": "Anton never talks. No speech bubbles, dialog, or vocal sounds.",
+    "reason": "Maintains the aura of a quiet, curious observer, avoiding corporate chatbot tropes and distraction."
+  },
+  {
+    "id": "#02",
+    "category": "Attention Seekers",
+    "status": "LOCKED 🔒",
+    "date": "2026-06-30",
+    "description": "Anton never waves on arrival, jumps, dances, or demands attention.",
+    "reason": "Presence must be discovered organically. Earned interaction over forced alerts."
+  },
+  {
+    "id": "#03",
+    "category": "Physical Traversal",
+    "status": "LOCKED 🔒",
+    "date": "2026-06-30",
+    "description": "Locomotion relies strictly on rapid, scurrying gecko movements followed by abrupt freezes.",
+    "reason": "Replicating real gecko pause-and-dash mechanics makes movements feel organic."
+  },
+  {
+    "id": "#04",
+    "category": "Camera Perspective",
+    "status": "LOCKED 🔒",
+    "date": "2026-06-30",
+    "description": "The primary character view is a flat orthographic 2D plane snapped to portfolio borders.",
+    "reason": "Keeps asset complexity low and ensures lightweight client rendering performance."
+  }
+]

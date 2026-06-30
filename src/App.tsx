@@ -15,6 +15,7 @@ import Skills from './components/Skills';
 import About from './components/About';
 import SectionWrapper from './components/SectionWrapper';
 import PortfolioChatbot from './components/PortfolioChatbot';
+import Anton from './components/Anton/Anton';
 
 const SECTIONS: Section[] = ['home', 'work', 'experience', 'skills', 'about'];
 
@@ -92,6 +93,7 @@ export default function App() {
 
       <Footer />
       <PortfolioChatbot />
+      <Anton />
     </div>
   );
 }

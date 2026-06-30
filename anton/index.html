@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ANTON // Character Design Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Pixar/Figma Character Studio Layout Shell -->
+  <div id="studio-root">
+    
+    <!-- Top Header Bar -->
+    <header class="studio-header">
+      <div class="studio-brand">
+        <span>▲</span> ANTON // DESIGN STUDIO
+      </div>
+      
+      <!-- Telemetry Info -->
+      <div class="studio-meta-bar">
+        <div class="meta-status-pill">
+          <span class="status-indicator ready"></span>
+          <span>SYSTEM READY</span>
+        </div>
+        <span id="header-project-ver">v0.1.0</span>
+        <span id="header-last-updated">2026-06-30</span>
+      </div>
+    </header>
+
+    <!-- Left Workspace Navigation Sidebar -->
+    <aside class="studio-sidebar">
+      
+      <!-- Studio Metadata Card -->
+      <div class="goal-widget" style="background-color: var(--bg-card);">
+        <div class="goal-card" style="gap: 4px;">
+          <span class="goal-badge" style="color: var(--accent-primary);">STUDIO MASTER</span>
+          <span class="goal-title" id="sidebar-creative-director">Arsalan Qasim</span>
+          <span class="goal-desc" id="sidebar-milestone-phase">Phase: Identity Exploration</span>
+        </div>
+      </div>
+
+      <!-- Today's Goal Widget -->
+      <div class="sidebar-section">
+        <h3 class="sidebar-section-title">Current Focus</h3>
+        <div class="goal-widget">
+          <div class="goal-card">
+            <span class="goal-badge" id="today-goal-badge">TODAY'S GOAL</span>
+            <span class="goal-title" id="today-goal-title">Workspace Initialization</span>
+            <span class="goal-desc" id="today-goal-desc">Reviewing structural DNA schemas and documentation paths.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Workspace Menu Options -->
+      <div class="sidebar-section">
+        <h3 class="sidebar-section-title">Workspace</h3>
+        <nav class="studio-nav" id="sidebar-navigation">
+          <div class="nav-item active" data-section="dashboard">
+            <svg class="nav-icon"><use href="assets/icons/icons.svg#icon-dashboard" /></svg>
+            Dashboard
+          </div>
+          <div class="nav-item" data-section="inspiration">
+            <svg class="nav-icon"><use href="assets/icons/icons.svg#icon-board" /></svg>
+            Inspiration Board
+          </div>
+          <div class="nav-item" data-section="prompts">
+            <svg class="nav-icon"><use href="assets/icons/icons.svg#icon-prompts" /></svg>
+            Prompt Library
+          </div>
+          <div class="nav-item" data-section="dna">
+            <svg class="nav-icon"><use href="assets/icons/icons.svg#icon-dna" /></svg>
+            Anton DNA
+          </div>
+          <div class="nav-item" data-section="history">
+            <svg class="nav-icon"><use href="assets/icons/icons.svg#icon-log" /></svg>
+            Version History
+          </div>
+          <div class="nav-item" data-section="decisions">
+            <svg class="nav-icon"><use href="assets/icons/icons.svg#icon-decisions" /></svg>
+            Design Decisions
+          </div>
+          <div class="nav-item" data-section="concepts">
+            <svg class="nav-icon"><use href="assets/icons/icons.svg#icon-concepts" /></svg>
+            Concept Gallery
+          </div>
+        </nav>
+      </div>
+
+      <!-- Milestone Lock System Sidebar Panel -->
+      <div class="sidebar-section">
+        <h3 class="sidebar-section-title">Milestone Locks</h3>
+        <div id="progress-sidebar-container">
+          <!-- progress.js handles loading this -->
+        </div>
+      </div>
+      
+    </aside>
+
+    <!-- Main Workspace Container -->
+    <main class="studio-main" id="workspace-content">
+      
+      <!-- DASHBOARD LANDING TAB PANEL -->
+      <section class="workspace-panel active" id="panel-dashboard">
+        <div class="panel-header">
+          <div class="panel-title-block">
+            <h1 class="panel-title" id="dashboard-title">Identity & Setup Workspace</h1>
+            <p class="panel-subtitle" id="dashboard-subtitle">Anton Character Design Studio Landing Hub</p>
+          </div>
+        </div>
+
+        <div class="dashboard-grid">
+          
+          <!-- Left Column: Large Character Silhouette Viewer -->
+          <div class="dashboard-left">
+            <div class="character-viewer-card">
+              <div class="viewer-header">
+                <span class="viewer-title">ORTHOGRAPHIC_FRONT_ORTHO_COORD_G_V0.1</span>
+                <span class="viewer-title" style="color: var(--accent-primary);">READY</span>
+              </div>
+              <div class="viewer-viewport">
+                <!-- SVG Grid Canvas -->
+                <div class="viewer-placeholder-silhouette">
+                  <svg class="silhouette-svg"><use href="assets/icons/icons.svg#icon-silhouette" /></svg>
+                  <div class="viewer-label">
+                    <h3>Anton v0.1</h3>
+                    <p>Concept Phase</p>
+                  </div>
+                </div>
+                
+                <!-- Viewport telemetry coordinate guidelines -->
+                <div class="viewer-axes">
+                  <span>X_AXIS: 0.00</span>
+                  <span>Y_AXIS: 0.00</span>
+                  <span>Z_AXIS: 0.00</span>
+                </div>
+                
+                <div class="viewer-dimensions">
+                  <span>SCALE: 1:1 [55-120px]</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Recent Activity Feeds -->
+          <div class="dashboard-right">
+            
+            <!-- Recent locked design decisions -->
+            <div class="dashboard-panel-card" style="flex-grow: 1;">
+              <div class="card-title-bar">
+                <span class="card-title">Recent Locked Decisions</span>
+                <svg class="nav-icon" style="color: var(--text-muted);"><use href="assets/icons/icons.svg#icon-decisions" /></svg>
+              </div>
+              <div id="dashboard-decisions-feed" style="display: flex; flex-direction: column; gap: var(--space-sm);">
+                <!-- Dynamically populated -->
+              </div>
+            </div>
+
+            <!-- Recent concept card drafts -->
+            <div class="dashboard-panel-card">
+              <div class="card-title-bar">
+                <span class="card-title">Latest Concept Gallery</span>
+                <svg class="nav-icon" style="color: var(--text-muted);"><use href="assets/icons/icons.svg#icon-concepts" /></svg>
+              </div>
+              <div id="dashboard-concepts-feed" style="display: flex; flex-direction: column; gap: var(--space-sm);">
+                <!-- Dynamically populated -->
+              </div>
+            </div>
+
+          </div>
+          
+        </div>
+      </section>
+
+      <!-- INSPIRATION VIEWPORT TAB PANEL -->
+      <section class="workspace-panel" id="panel-inspiration">
+        <div class="panel-header">
+          <div class="panel-title-block">
+            <h1 class="panel-title">Inspiration & References</h1>
+            <p class="panel-subtitle">Drag-and-drop imagery references for visual and structural cues.</p>
+          </div>
+        </div>
+        <div id="inspiration-board-root">
+          <!-- board.js loads this -->
+        </div>
+      </section>
+
+      <!-- PROMPTS VIEWPORT TAB PANEL -->
+      <section class="workspace-panel" id="panel-prompts">
+        <div class="panel-header">
+          <div class="panel-title-block">
+            <h1 class="panel-title">Prompt Library</h1>
+            <p class="panel-subtitle">Authoritative history of production prompts used for Anton's development.</p>
+          </div>
+          <div class="library-controls">
+            <div class="search-input-wrapper">
+              <svg class="search-icon-svg"><use href="assets/icons/icons.svg#icon-search" /></svg>
+              <input type="text" id="prompt-search-input" class="search-input" placeholder="Search prompts, categories, versions...">
+            </div>
+          </div>
+        </div>
+        <div id="prompt-library-root">
+          <!-- prompts.js loads this -->
+        </div>
+      </section>
+
+      <!-- DNA VIEWPORT TAB PANEL -->
+      <section class="workspace-panel" id="panel-dna">
+        <div class="panel-header">
+          <div class="panel-title-block">
+            <h1 class="panel-title">Anton Character DNA</h1>
+            <p class="panel-subtitle">The programmatic source of truth configuration. Updates write directly to Anton_DNA.json.</p>
+          </div>
+        </div>
+        <div id="dna-editor-root">
+          <!-- dna.js loads this -->
+        </div>
+      </section>
+
+      <!-- VERSION HISTORY TAB PANEL -->
+      <section class="workspace-panel" id="panel-history">
+        <div class="panel-header">
+          <div class="panel-title-block">
+            <h1 class="panel-title">Milestone Version Timeline</h1>
+            <p class="panel-subtitle">Semantic updates, decisions, and files changed across versions.</p>
+          </div>
+        </div>
+        <div id="version-history-root">
+          <!-- log.js renders this -->
+        </div>
+      </section>
+
+      <!-- DECISION LOG TAB PANEL -->
+      <section class="workspace-panel" id="panel-decisions">
+        <div class="panel-header">
+          <div class="panel-title-block">
+            <h1 class="panel-title">Design Decision Registry</h1>
+            <p class="panel-subtitle">Formal log of locked design decisions and underlying engineering arguments.</p>
+          </div>
+        </div>
+        <div id="decision-log-root">
+          <!-- log.js renders this -->
+        </div>
+      </section>
+
+      <!-- CONCEPT GALLERY VIEWPORT TAB PANEL -->
+      <section class="workspace-panel" id="panel-concepts">
+        <div class="panel-header">
+          <div class="panel-title-block">
+            <h1 class="panel-title">Character Concept Art drafts</h1>
+            <p class="panel-subtitle">Review, ratings, and design feedback for candidate character drawings.</p>
+          </div>
+        </div>
+        <div id="concept-gallery-root">
+          <!-- log.js renders this -->
+        </div>
+      </section>
+      
+    </main>
+  </div>
+
+  <!-- Boot strap the JS modules -->
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

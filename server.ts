@@ -5,6 +5,7 @@
 
 import express from 'express';
 import path from 'path';
+import fs from 'fs';
 import { createServer as createViteServer } from 'vite';
 import { GoogleGenAI } from '@google/genai';
 import dotenv from 'dotenv';
@@ -85,6 +86,91 @@ async function startServer() {
     res.json({ status: 'ok', timestamp: new Date().toISOString() });
   });
 
+  // Concept Asset Pipeline Scanner Endpoint
+  app.get('/api/concepts', (req, res) => {
+    try {
+      const antonPath = path.join(process.cwd(), 'anton');
+      const conceptsDir = path.join(antonPath, 'assets', 'concepts');
+      console.log(`[Pipeline] Scanning directory: ${conceptsDir}`);
+      console.log(`[Pipeline] Directory exists: ${fs.existsSync(conceptsDir)}`);
+      
+      const scanDirectory = (dir: string, baseDir: string, indexList: any[] = []): any[] => {
+        if (!fs.existsSync(dir)) return indexList;
+        const files = fs.readdirSync(dir);
+        console.log(`[Pipeline] Found files in ${dir}:`, files);
+        for (const file of files) {
+          const fullPath = path.join(dir, file);
+          const stat = fs.statSync(fullPath);
+          if (stat.isDirectory()) {
+            scanDirectory(fullPath, baseDir, indexList);
+          } else {
+            const ext = path.extname(file).toLowerCase();
+            if (['.png', '.jpg', '.jpeg', '.svg'].includes(ext)) {
+              // Get relative path from anton/ folder
+              const relPath = path.relative(antonPath, fullPath).replace(/\\/g, '/');
+              const baseName = path.basename(file, ext);
+              const parentFolder = path.basename(path.dirname(fullPath)).toUpperCase();
+              
+              // Load metadata JSON if exists
+              const metaPath = path.join(dir, `${baseName}.json`);
+              let meta: any = {};
+              if (fs.existsSync(metaPath)) {
+                try {
+                  meta = JSON.parse(fs.readFileSync(metaPath, 'utf8'));
+                } catch (e) {
+                  console.error(`Error parsing metadata at ${metaPath}:`, e);
+                }
+              }
+              
+              // Permanent Unique ID resolution
+              let id = meta.id;
+              if (!id) {
+                if (/^ANT-[A-Z0-9]+-[0-9]+$/.test(baseName)) {
+                  id = baseName;
+                } else {
+                  // Fallback ID generation
+                  const indexStr = String(indexList.length + 1).padStart(3, '0');
+                  id = `ANT-${parentFolder}-${indexStr}`;
+                }
+              }
+              
+              // Thumbnail Check
+              const thumbName = `${baseName}${ext}`;
+              const thumbPath = path.join(antonPath, 'assets', 'thumbnails', thumbName);
+              const hasThumb = fs.existsSync(thumbPath);
+              
+              const concept = {
+                id,
+                imageUrl: relPath,
+                thumbnailUrl: hasThumb ? `assets/thumbnails/${thumbName}` : relPath,
+                category: meta.category || parentFolder.toLowerCase(),
+                version: meta.version || (relPath.includes('v0.2') ? 'v0.2' : 'v0.1.0'),
+                tags: meta.tags || relPath.split('/').slice(2, -1),
+                rating: meta.rating !== undefined ? meta.rating : 0,
+                status: meta.status || 'WIP',
+                notes: meta.notes || 'Auto-discovered asset.',
+                date: stat.mtime.toISOString()
+              };
+              indexList.push(concept);
+            }
+          }
+        }
+        return indexList;
+      };
+
+      const concepts = scanDirectory(conceptsDir, antonPath);
+      
+      // Auto-generate canonical master index file: data/concepts.index.json
+      const indexFilePath = path.join(antonPath, 'data', 'concepts.index.json');
+      fs.writeFileSync(indexFilePath, JSON.stringify(concepts, null, 2), 'utf8');
+
+      res.json(concepts);
+    } catch (error: any) {
+      console.error('Error in GET /api/concepts scanner:', error);
+      res.status(500).json({ error: 'Asset pipeline scan failed', details: error.message });
+    }
+  });
+
   // Chatbot proxy endpoint
   app.post('/api/chat', async (req, res) => {
     try {
@@ -126,6 +212,9 @@ async function startServer() {
       });
     }
   });
+
+  // Serve the Anton Character Design Studio
+  app.use('/anton', express.static(path.join(process.cwd(), 'anton')));
 
   // Serve static files / Vite HMR integration
   if (process.env.NODE_ENV !== 'production') {

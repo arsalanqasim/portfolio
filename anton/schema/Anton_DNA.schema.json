@@ -1,0 +1,123 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AntonDNA",
+  "type": "object",
+  "properties": {
+    "identity": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "codename": { "type": "string" },
+        "philosophy": { "type": "string" },
+        "rules": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      },
+      "required": ["name", "codename", "philosophy", "rules"]
+    },
+    "personality": {
+      "type": "object",
+      "properties": {
+        "temperament": { "type": "string" },
+        "loved_interactions": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "ignored_interactions": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      },
+      "required": ["temperament", "loved_interactions", "ignored_interactions"]
+    },
+    "appearance": {
+      "type": "object",
+      "properties": {
+        "species": { "type": "string" },
+        "scale_rules": {
+          "type": "object",
+          "properties": {
+            "navbar_height_px": { "type": "integer" },
+            "project_card_height_px": { "type": "integer" },
+            "portrait_focal_height_px": { "type": "integer" }
+          },
+          "required": ["navbar_height_px", "project_card_height_px", "portrait_focal_height_px"]
+        },
+        "body_proportions": {
+          "type": "object",
+          "properties": {
+            "head_to_body_ratio": { "type": "number" },
+            "tail_to_body_ratio": { "type": "number" },
+            "limb_length_ratio": { "type": "number" }
+          },
+          "required": ["head_to_body_ratio", "tail_to_body_ratio", "limb_length_ratio"]
+        }
+      },
+      "required": ["species", "scale_rules", "body_proportions"]
+    },
+    "movement": {
+      "type": "object",
+      "properties": {
+        "style": { "type": "string" },
+        "speed": {
+          "type": "object",
+          "properties": {
+            "walk_units_per_sec": { "type": "number" },
+            "scurry_units_per_sec": { "type": "number" }
+          },
+          "required": ["walk_units_per_sec", "scurry_units_per_sec"]
+        },
+        "gait_sequence": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "rotation_rules": { "type": "string" }
+      },
+      "required": ["style", "speed", "gait_sequence", "rotation_rules"]
+    },
+    "behavior": {
+      "type": "object",
+      "properties": {
+        "sections": {
+          "type": "object",
+          "additionalProperties": { "type": "string" }
+        },
+        "easter_eggs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": { "type": "string" },
+              "trigger": { "type": "string" },
+              "description": { "type": "string" }
+            },
+            "required": ["id", "trigger", "description"]
+          }
+        }
+      },
+      "required": ["sections", "easter_eggs"]
+    },
+    "brand": {
+      "type": "object",
+      "properties": {
+        "colors": {
+          "type": "object",
+          "additionalProperties": { "type": "string" }
+        },
+        "materials": {
+          "type": "object",
+          "properties": {
+            "skin_roughness": { "type": "number" },
+            "underbelly_roughness": { "type": "number" },
+            "eye_glossiness": { "type": "number" },
+            "body_specular": { "type": "number" }
+          },
+          "required": ["skin_roughness", "underbelly_roughness", "eye_glossiness", "body_specular"]
+        }
+      },
+      "required": ["colors", "materials"]
+    }
+  },
+  "required": ["identity", "personality", "appearance", "movement", "behavior", "brand"]
+}

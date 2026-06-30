@@ -1,0 +1,67 @@
+:root {
+  /* Colors - Base Dark Neutrals */
+  --bg-workspace: #080809;       /* Deep obsidian black */
+  --bg-panel: #111113;           /* Clean dark grey for panels */
+  --bg-card: #18181b;            /* Slightly lighter dark for inner cards */
+  --bg-input: #0c0c0d;           /* Input field background */
+  
+  /* Borders & Dividers */
+  --border-color: #242427;       /* Mid grey border */
+  --border-focus: #4b4f56;       /* Focus border */
+  --border-hover: #323236;       /* Hover border */
+  
+  /* Brand Accent Colors */
+  --accent-primary: #8a5cf5;     /* Premium Figma Purple */
+  --accent-secondary: #0ea5e9;   /* Pixar cyan */
+  --accent-success: #10b981;     /* Active lock green */
+  --accent-warning: #f59e0b;     /* In-progress amber */
+  --accent-error: #ef4444;       /* Alert red */
+
+  /* Locked States overlays */
+  --bg-locked: rgba(12, 12, 13, 0.6);
+  --border-locked: #2f253d;      /* Subtle purple border for locked elements */
+  
+  /* Typography Colors */
+  --text-main: #f4f4f5;          /* Crisp white */
+  --text-secondary: #a1a1aa;     /* Medium grey */
+  --text-muted: #52525b;         /* Darker grey for details/labels */
+  --text-link: #a78bfa;          /* Interactive text purple */
+
+  /* Font Families */
+  --font-sans: "Outfit", "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "Fira Code", "Courier New", Courier, monospace;
+
+  /* Typography Scales */
+  --fs-xs: 0.75rem;     /* 12px */
+  --fs-sm: 0.8125rem;   /* 13px */
+  --fs-md: 0.875rem;    /* 14px */
+  --fs-lg: 1rem;        /* 16px */
+  --fs-xl: 1.25rem;      /* 20px */
+  --fs-2xl: 1.5rem;     /* 24px */
+
+  /* Spacing Grid (8pt system) */
+  --space-xxs: 0.25rem;  /* 4px */
+  --space-xs: 0.5rem;    /* 8px */
+  --space-sm: 0.75rem;   /* 12px */
+  --space-md: 1rem;      /* 16px */
+  --space-lg: 1.5rem;    /* 24px */
+  --space-xl: 2rem;      /* 32px */
+  --space-2xl: 3rem;     /* 48px */
+
+  /* Borders & Radii */
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.6), 0 2px 4px -1px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.8), 0 4px 6px -2px rgba(0, 0, 0, 0.5);
+
+  /* Animation Durations */
+  --transition-fast: 120ms ease;
+  --transition-normal: 220ms ease;
+  --transition-slow: 400ms ease;
+}

@@ -1,0 +1,29 @@
+[
+  {
+    "version": "v0.1.0",
+    "title": "Initial Design Workspace",
+    "category": "System Prompt",
+    "goal": "Establish the folder structure, schemas, and design guidelines for Anton Character Design Studio v0.1.",
+    "text": "Act as a Pixar Character Designer. Build a minimal, dark-themed, glassmorphic design workspace inside /anton folder for iterative character development. Ensure clean CSS variables, modular JS, and a placeholder gecko silhouette. Do not write final gecko SVG paths yet.",
+    "locked": true,
+    "notes": "Ensured clean decoupled modules and localStorage data separation."
+  },
+  {
+    "version": "v0.2.0",
+    "title": "Eyes and Gaze Logic",
+    "category": "Face",
+    "goal": "Develop pupillary scale adjustments and mouse-tracking gaze behaviors.",
+    "text": "Create an eye component with adjustable scale properties, pupil dilation rates, and smooth linear interpolation (lerp) following the cursor positions. Document the gaze limits and snap vectors inside Anton_DNA.json.",
+    "locked": false,
+    "notes": "Requires HTML Canvas or scalable inline SVGs."
+  },
+  {
+    "version": "v0.3.0",
+    "title": "Emotion State Modulators",
+    "category": "Expressions",
+    "goal": "Design morphing animations for the 6 target emotional expressions.",
+    "text": "Act as a character technical director. Design CSS transitions or canvas keyframe definitions for Neutral, Curious, Focused, Happy, Sleepy, and Alert emotions. Eye-scales, tilt degrees, and tail-wag weights must morph smoothly.",
+    "locked": false,
+    "notes": "Make sure lock status is checked in the sidebar before allowing changes."
+  }
+]

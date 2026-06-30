@@ -1,0 +1,44 @@
+[
+  {
+    "id": "ref-01",
+    "category": "Real Geckos",
+    "title": "Gold Dust Day Gecko",
+    "desc": "Reference for green body tone and orange spot patterns.",
+    "imgPlaceholder": "icon-silhouette"
+  },
+  {
+    "id": "ref-02",
+    "category": "Real Geckos",
+    "title": "Gecko Locomotion",
+    "desc": "Alternating gait patterns: Left Hand -> Right Foot -> Right Hand -> Left Foot.",
+    "imgPlaceholder": "icon-board"
+  },
+  {
+    "id": "ref-03",
+    "category": "Pixar",
+    "title": "Sven (Frozen) Eyeball Scaling",
+    "desc": "Subtle, smooth pupil dilation to signal focus and curiosity.",
+    "imgPlaceholder": "icon-concepts"
+  },
+  {
+    "id": "ref-04",
+    "category": "Pixar",
+    "title": "Pascal (Tangled) Expressions",
+    "desc": "Moods shown through posture and head tilt, not vocal speech.",
+    "imgPlaceholder": "icon-silhouette"
+  },
+  {
+    "id": "ref-05",
+    "category": "Premium UI",
+    "title": "Linear Sidebar Details",
+    "desc": "Clean monospaced status labels and dark charcoal containers.",
+    "imgPlaceholder": "icon-dashboard"
+  },
+  {
+    "id": "ref-06",
+    "category": "Materials",
+    "title": "Subtle SSS Skin",
+    "desc": "Subsurface scattering values to avoid raw flat colors. Roughness around 0.85.",
+    "imgPlaceholder": "icon-dna"
+  }
+]

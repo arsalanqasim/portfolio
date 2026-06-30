@@ -1,0 +1,106 @@
+{
+  "identity": {
+    "name": "Anton",
+    "codename": "Explorer-01",
+    "philosophy": "Anton is a quiet explorer who discovers technology with the same curiosity that visitors discover Arsalan's portfolio.",
+    "rules": [
+      "Rule 1: Anton never talks. No speech bubbles, no dialogue, no voice. Body language is absolute.",
+      "Rule 2: Anton never asks for attention. No waving, no dancing, no jumping on entry. Presence is discovered.",
+      "Rule 3: Anton is always doing something meaningful. Climbing, observing, sleeping are all intentional.",
+      "Rule 4: Anton is curious, not playful. Curiosity drives every physical traversal.",
+      "Rule 5: Anton never breaks physics. Every move has weight, momentum, and physical purpose."
+    ]
+  },
+  "personality": {
+    "temperament": "Gentle, observant, cautious, intellectual",
+    "loved_interactions": [
+      "new_projects",
+      "interesting_code_blocks",
+      "ai_diagrams",
+      "static_images",
+      "slow_moving_objects",
+      "primary_action_buttons"
+    ],
+    "ignored_interactions": [
+      "empty_whitespace",
+      "large_text_paragraphs",
+      "decorative_backgrounds",
+      "erratic_distant_mouse_movement"
+    ]
+  },
+  "appearance": {
+    "species": "Gecko (Inspired by Golden Dust Day Gecko)",
+    "scale_rules": {
+      "navbar_height_px": 60,
+      "project_card_height_px": 70,
+      "portrait_focal_height_px": 120
+    },
+    "body_proportions": {
+      "head_to_body_ratio": 0.35,
+      "tail_to_body_ratio": 1.1,
+      "limb_length_ratio": 0.45
+    }
+  },
+  "movement": {
+    "style": "Locomotion consists of rapid scurries followed by sharp freezes.",
+    "speed": {
+      "walk_units_per_sec": 4.5,
+      "scurry_units_per_sec": 8.0
+    },
+    "gait_sequence": [
+      "Left Hand (LH)",
+      "Right Foot (RF)",
+      "Right Hand (RH)",
+      "Left Foot (LF)"
+    ],
+    "rotation_rules": "Head rotates slightly first to track targets before the body alignment shift occurs."
+  },
+  "behavior": {
+    "sections": {
+      "navbar": "Home Base",
+      "hero": "Curious Observer",
+      "projects": "Active Explorer",
+      "experience": "Quiet Climber",
+      "skills": "Scientific Inspector",
+      "about": "Respectful Visitor",
+      "footer": "Sleeping"
+    },
+    "easter_eggs": [
+      {
+        "id": "butterfly",
+        "trigger": "random_frequency_low",
+        "description": "A tiny butterfly appears; Anton stalks it, it escapes, Anton watches it fly off and returns."
+      },
+      {
+        "id": "coffee",
+        "trigger": "extended_dwell_time",
+        "description": "A coffee mug appears; Anton inspects, sniffs, decides it is uninteresting, and walks away."
+      },
+      {
+        "id": "rain",
+        "trigger": "weather_api_or_seasonal",
+        "description": "Rain drops appear in Hero; Anton retreats under the nearest container frame for shelter."
+      },
+      {
+        "id": "konami_code",
+        "trigger": "up_up_down_down_left_right_left_right_b_a",
+        "description": "Anton looks at screen, performs a single backflip, then resumes default exploring."
+      }
+    ]
+  },
+  "brand": {
+    "colors": {
+      "primary_green": "#4ADE80",
+      "secondary_accent": "#06B6D4",
+      "base_dark": "#1E293B",
+      "spots_orange": "#F97316",
+      "underbelly_cream": "#F8FAFC"
+    },
+    "materials": {
+      "skin_roughness": 0.85,
+      "underbelly_roughness": 0.95,
+      "eye_glossiness": 0.98,
+      "body_specular": 0.15
+    }
+  }
+}
