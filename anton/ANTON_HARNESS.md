@@ -18,9 +18,18 @@ When a new answer changes an earlier decision, update this file by removing or r
 - **Intent:** He should feel like a real character with believable presence, not a flat 2D mascot.
 - **Recorded answer:** B
 
+### 3. Visual Realism and Character Style
+
+- **Decision:** Anton should be a believable stylized 3D character with cartoonish charm.
+- **Anatomy boundary:** He should be gecko-looking and gecko-inspired, but not a completely realistic gecko.
+- **Reference direction:** The expressive, cinematic creature-character approach of *Rango* (2011).
+- **Avoid:** Photorealistic animal rendering and generic mascot-like simplification.
+- **Recorded answer:** A, with clarification
+
 ## Unresolved Decisions
 
 - Visitor interaction model
+- Character behavior scope
 - Anton's relationship to portfolio content
 - Visual personality and appearance
 - Motion and behavior system
