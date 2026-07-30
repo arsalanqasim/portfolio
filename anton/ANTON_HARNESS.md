@@ -40,6 +40,13 @@ When a new answer changes an earlier decision, update this file by removing or r
 - **Primary activities:** Exploring, inspecting, observing, reacting, resting, and sleeping.
 - **Recorded answer:** A
 
+### 6. Exploration Driver
+
+- **Decision:** Anton uses context-aware autonomy.
+- **Inputs:** Current portfolio section, meaningful content, visitor activity, hover targets, scroll behavior, and page state.
+- **Decision model:** Anton chooses when and where to explore instead of relying only on fixed scripts or direct cursor commands.
+- **Recorded answer:** A
+
 ## Unresolved Decisions
 
 - Visitor interaction model
