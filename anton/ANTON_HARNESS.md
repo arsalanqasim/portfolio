@@ -47,6 +47,21 @@ When a new answer changes an earlier decision, update this file by removing or r
 - **Decision model:** Anton chooses when and where to explore instead of relying only on fixed scripts or direct cursor commands.
 - **Recorded answer:** A
 
+### 7. Autonomy Intensity
+
+- **Decision:** Anton uses quiet and bounded autonomy.
+- **Behavior boundary:** He acts only when something is meaningful, never steals focus, and is comfortable remaining still.
+- **Design implication:** Autonomous behavior should feel intentional and occasional rather than busy, needy, or attention-seeking.
+- **Recorded answer:** A
+
+### 8. Arrival Behavior
+
+- **Decision:** Anton should combine a subtle entrance with a visual greeting.
+- **Entrance:** He appears from within or behind portfolio components rather than simply spawning in open space.
+- **Greeting:** After emerging, he acknowledges the visitor through a clear character action.
+- **Current boundary:** The greeting is visual and non-verbal unless explicitly changed later.
+- **Recorded answer:** B + C
+
 ## Unresolved Decisions
 
 - Visitor interaction model
