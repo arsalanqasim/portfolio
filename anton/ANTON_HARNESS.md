@@ -26,6 +26,20 @@ When a new answer changes an earlier decision, update this file by removing or r
 - **Avoid:** Photorealistic animal rendering and generic mascot-like simplification.
 - **Recorded answer:** A, with clarification
 
+### 4. Primary Relationship
+
+- **Decision:** Anton interacts with both the visitor and the portfolio content.
+- **Visitor relationship:** He notices and responds to visitor activity without becoming demanding or distracting.
+- **Portfolio relationship:** He independently observes and explores meaningful projects, skills, experience, and visual elements.
+- **Recorded answer:** A
+
+### 5. Core Behavior
+
+- **Decision:** Anton explores and inspects the portfolio.
+- **Behavior loop:** He moves toward meaningful portfolio elements, studies them, responds subtly to the visitor, and rests or sleeps naturally.
+- **Primary activities:** Exploring, inspecting, observing, reacting, resting, and sleeping.
+- **Recorded answer:** A
+
 ## Unresolved Decisions
 
 - Visitor interaction model
