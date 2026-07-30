@@ -9,7 +9,7 @@ When a new answer changes an earlier decision, update this file by removing or r
 
 - **Decision:** Anton is a silent visual companion for the portfolio.
 - **Role:** Make the portfolio feel alive, embody curiosity and craftsmanship, and subtly guide attention through presence and movement.
-- **Communication boundary:** Anton does not explain portfolio content or act as a conversational assistant.
+- **Communication boundary:** Anton is not the portfolio's general AI assistant. His text is character-driven and tied to his reactions, observations, and story moments rather than open-ended help.
 - **Recorded answer:** A
 
 ### 2. Character Form and Rendering Medium
@@ -61,6 +61,54 @@ When a new answer changes an earlier decision, update this file by removing or r
 - **Greeting:** After emerging, he acknowledges the visitor through a clear character action.
 - **Current boundary:** The greeting is visual and non-verbal unless explicitly changed later.
 - **Recorded answer:** B + C
+
+### 9. Greeting Gesture
+
+- **Decision:** Anton gives an expressive mascot-style greeting.
+- **Action:** He raises or waves one front foot clearly toward the visitor after emerging.
+- **Boundary:** This is a deliberate greeting event, not a constant or repeated attention-seeking behavior.
+- **Recorded answer:** B
+
+### 10. Greeting Frequency
+
+- **Decision:** Anton performs the greeting once per visit or session.
+- **After greeting:** He returns to his normal exploration behavior and does not repeat the greeting during the same session.
+- **Recorded answer:** A
+
+### 11. Post-Greeting Behavior
+
+- **Decision:** After greeting, Anton begins context-aware exploration.
+- **Transition:** He observes the current page, chooses a meaningful target, and starts exploring without waiting for another command.
+- **Recorded answer:** A
+
+### 12. Movement Style
+
+- **Decision:** Anton uses smooth cinematic movement.
+- **Motion quality:** Movement should feel polished, fluid, expressive, and film-like rather than constantly abrupt or stop-start.
+- **Physicality:** He should still retain believable weight, timing, balance, and creature-specific motion.
+- **Recorded answer:** B
+
+### 13. Anthropomorphism
+
+- **Decision:** Anton is a balanced creature-character.
+- **Creature foundation:** He retains a gecko-inspired body, instincts, and physical identity.
+- **Character expression:** He may use selected expressive gestures, including the front-foot greeting, without becoming fully human.
+- **Recorded answer:** C
+
+### 14. Communication Method
+
+- **Decision:** Anton communicates primarily through eyes and body language, supported by context-dependent text.
+- **Primary channel:** Gaze, head direction, posture, gestures, movement, and facial expressions.
+- **Secondary channel:** Text may be a minimal expressive caption, a short contextual comment, or a complete sentence when the character moment requires it.
+- **Boundary:** Text remains character-driven and should not turn Anton into the portfolio's general-purpose chatbot.
+- **Recorded answer:** A + B + C, with contextual use
+
+### 15. Audio Boundary
+
+- **Decision:** Anton uses text-only communication.
+- **Forbidden:** No spoken dialogue, voice performance, or audio speech.
+- **Communication output:** His captions and dialogue are rendered visually on the page.
+- **Recorded answer:** A
 
 ## Unresolved Decisions
 
