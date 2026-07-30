@@ -12,9 +12,14 @@ When a new answer changes an earlier decision, update this file by removing or r
 - **Communication boundary:** Anton does not explain portfolio content or act as a conversational assistant.
 - **Recorded answer:** A
 
+### 2. Character Form and Rendering Medium
+
+- **Decision:** Anton will be a 3D character.
+- **Intent:** He should feel like a real character with believable presence, not a flat 2D mascot.
+- **Recorded answer:** B
+
 ## Unresolved Decisions
 
-- Character form and rendering medium
 - Visitor interaction model
 - Anton's relationship to portfolio content
 - Visual personality and appearance
