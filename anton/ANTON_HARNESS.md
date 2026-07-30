@@ -110,6 +110,67 @@ When a new answer changes an earlier decision, update this file by removing or r
 - **Communication output:** His captions and dialogue are rendered visually on the page.
 - **Recorded answer:** A
 
+### 16. Dialogue System
+
+- **Decision:** Anton uses authored dialogue with contextual selection.
+- **Source of truth:** His lines are written and curated as part of the character design.
+- **Runtime behavior:** The system selects an appropriate line based on Anton's state, visitor behavior, and current portfolio context.
+- **Forbidden:** No uncontrolled freeform dialogue generation.
+- **Recorded answer:** A
+
+### 17. Relationship to Portfolio Chatbot
+
+- **Decision:** Anton remains a distinct character.
+- **Anton's role:** Expresses his own observations, reactions, and personality through movement and authored text.
+- **Chatbot's role:** Continues handling visitor questions and factual information about Arsalan's portfolio.
+- **Boundary:** Anton does not replace or impersonate the portfolio chatbot.
+- **Recorded answer:** A
+
+### 18. Content Priority
+
+- **Decision:** Anton prioritizes high-signal technical content.
+- **Primary targets:** Projects, metrics, code-related visuals, technical diagrams, skill details, and meaningful work updates.
+- **Curiosity principle:** His exploration should reinforce the portfolio's core identity as practical AI/ML engineering work.
+- **Recorded answer:** A
+
+### 19. Fallback Exploration
+
+- **Decision:** When no high-signal technical content is active, Anton explores nearby meaningful content.
+- **Fallback targets:** Relevant interface elements, personal sections, and visitor activity.
+- **Return behavior:** He returns to technical content when a stronger target becomes available.
+- **Recorded answer:** A
+
+### 20. Visitor Reaction Style
+
+- **Decision:** Anton responds to visitor interaction with subtle but readable reactions.
+- **Possible reactions:** Looks toward the cursor, adjusts posture, tilts his head, changes expression, or briefly comments.
+- **Intensity boundary:** Reactions should remain expressive without becoming exaggerated, noisy, or distracting.
+- **Recorded answer:** A
+
+### 21. Cursor Interaction
+
+- **Decision:** Anton uses proximity-aware cursor interaction between limited gaze tracking and selective approach behavior.
+- **Near cursor:** His eyes and head may follow the cursor, with subtle posture or expression changes.
+- **Occasional approach:** If the cursor remains meaningfully near him, he may move slightly toward it.
+- **Boundary:** He does not follow the cursor globally across the entire viewport.
+- **Recorded answer:** A + B, bounded hybrid
+
+### 22. Cursor-Reaction Area
+
+- **Decision:** Anton uses a broad local cursor area weighted toward meaningful targets.
+- **General awareness:** He can notice the cursor from farther away within the active portfolio section.
+- **Strong reaction:** His most expressive response occurs when the cursor is near a meaningful portfolio element he is inspecting.
+- **Boundary:** Awareness remains local to the active context and does not become full-viewport cursor tracking.
+- **Recorded answer:** B + C, bounded hybrid
+
+### 23. Click Reaction
+
+- **Decision:** A click triggers a brief acknowledgment followed by a return to exploration.
+- **Acknowledgment:** Anton may use a small gesture, expression, or authored line.
+- **Direct engagement:** In some contexts he may briefly face the visitor and offer a short character interaction.
+- **Boundary:** Clicks do not turn Anton into a persistent conversational interface.
+- **Recorded answer:** A + limited B
+
 ## Unresolved Decisions
 
 - Visitor interaction model
