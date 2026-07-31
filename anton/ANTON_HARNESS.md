@@ -189,9 +189,50 @@ When a new answer changes an earlier decision, update this file by removing or r
 
 - **Decision:** Anton moves along meaningful portfolio surfaces.
 - **Allowed surfaces:** Card edges, component borders, image frames, section boundaries, and other grounded surfaces.
-- **Hard constraint:** Anton must never block a component, text, control, or other meaningful part of the portfolio.
-- **Placement principle:** His position must support the page rather than cover or interfere with it.
+- **Default constraint:** Anton's autonomous placement must never block a component, text, control, or other meaningful part of the portfolio.
+- **Placement principle:** His autonomous position must support the page rather than cover or interfere with it.
+- **Manual override:** The visitor may temporarily override this constraint by manually placing Anton.
 - **Recorded answer:** A, with non-obstruction constraint
+
+### 27. Collision Avoidance
+
+- **Decision:** Anton reroutes around important content.
+- **Path rule:** He chooses another nearby safe surface or pauses until a safe path is available.
+- **Forbidden:** He must not overlap or obscure important content simply to reach a preferred target.
+- **Recorded answer:** A
+
+### 28. Unreachable Target Behavior
+
+- **Decision:** When no safe path to a target exists, Anton rests at the nearest safe position.
+- **Behavior:** He waits naturally and continues observing until the target becomes safely reachable.
+- **Recorded answer:** A
+
+### 29. User Repositioning
+
+- **Decision:** The visitor may manually move Anton.
+- **Interaction:** The visitor can click and hold Anton, pick him up, and place him somewhere else on the page.
+- **Purpose:** Gives the visitor control when Anton is in an inconvenient position or appears to be blocking something.
+- **Implementation requirement:** The interaction must feel like physically picking up and repositioning a character, not dragging a generic UI element.
+- **Placement rule:** The visitor may place Anton anywhere on the page, including temporarily over meaningful content.
+- **Self-correction:** If manual placement obstructs meaningful content, Anton waits briefly, then moves himself to available whitespace.
+- **Fallback placement:** If truly empty background space is unavailable, Anton may use the nearest low-priority area that does not materially interfere with the portfolio.
+- **No-space fallback:** If neither empty space nor a suitable low-priority area exists, Anton disappears from the site until a safe location becomes available.
+- **Return behavior:** When he returns, he greets the visitor and resumes normal exploration.
+- **Recorded answer:** B, with self-correction and hidden-state fallback
+
+### 30. Manual Placement Correction Delay
+
+- **Decision:** Anton waits 3–5 seconds before correcting an obstructing manual placement.
+- **Purpose:** This gives the visitor time to intentionally position him while preserving the portfolio's readability.
+- **Recorded answer:** A
+
+### 31. Safe Whitespace Definition
+
+- **Decision:** Safe placement prioritizes visually empty background areas, with a low-priority fallback.
+- **Primary safe space:** Areas with no text, controls, images, cards, or other meaningful content.
+- **Fallback safe space:** The nearest low-priority area may be used when completely empty space is unavailable, provided it does not materially interfere with the page.
+- **Hidden state:** Anton disappears only when neither option is available.
+- **Recorded answer:** A + C
 
 ## Unresolved Decisions
 
