@@ -171,6 +171,28 @@ When a new answer changes an earlier decision, update this file by removing or r
 - **Boundary:** Clicks do not turn Anton into a persistent conversational interface.
 - **Recorded answer:** A + limited B
 
+### 24. Click Interaction Duration
+
+- **Decision:** Click interactions last approximately 1–3 seconds.
+- **Sequence:** Acknowledge the visitor, perform a small reaction or short line, then return to exploration.
+- **Boundary:** The interaction is a moment, not an ongoing mode.
+- **Recorded answer:** A
+
+### 25. Page Traversal
+
+- **Decision:** Anton uses context-aware section traversal.
+- **Movement model:** He travels between meaningful portfolio components and sections based on scroll position, content, and visitor activity.
+- **Continuity:** Anton remains one continuous character moving through the page rather than unrelated duplicated appearances.
+- **Recorded answer:** A
+
+### 26. Physical Placement
+
+- **Decision:** Anton moves along meaningful portfolio surfaces.
+- **Allowed surfaces:** Card edges, component borders, image frames, section boundaries, and other grounded surfaces.
+- **Hard constraint:** Anton must never block a component, text, control, or other meaningful part of the portfolio.
+- **Placement principle:** His position must support the page rather than cover or interfere with it.
+- **Recorded answer:** A, with non-obstruction constraint
+
 ## Unresolved Decisions
 
 - Visitor interaction model
