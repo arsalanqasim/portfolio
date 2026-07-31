@@ -181,8 +181,9 @@ When a new answer changes an earlier decision, update this file by removing or r
 ### 25. Page Traversal
 
 - **Decision:** Anton uses context-aware section traversal.
-- **Movement model:** He travels between meaningful portfolio components and sections based on scroll position, content, and visitor activity.
+- **Movement model:** He travels between meaningful portfolio components and sections based on visible context, content, and visitor activity.
 - **Continuity:** Anton remains one continuous character moving through the page rather than unrelated duplicated appearances.
+- **Scroll relationship:** Scrolling changes his available context and targets, but does not physically drag or force Anton to move.
 - **Recorded answer:** A
 
 ### 26. Physical Placement
@@ -234,12 +235,124 @@ When a new answer changes an earlier decision, update this file by removing or r
 - **Hidden state:** Anton disappears only when neither option is available.
 - **Recorded answer:** A + C
 
-## Unresolved Decisions
+### 32. Reappearance After Hidden State
 
-- Visitor interaction model
-- Character behavior scope
-- Anton's relationship to portfolio content
-- Visual personality and appearance
-- Motion and behavior system
-- Accessibility and performance constraints
-- Implementation and delivery scope
+- **Decision:** Anton reappears at the nearest safe location in the current viewport.
+- **Return sequence:** He becomes visible, greets the visitor, and resumes context-aware exploration.
+- **Continuity:** He does not need to return to the obstructed location that caused him to hide.
+- **Recorded answer:** A
+
+### 33. Scroll Relationship
+
+- **Decision:** Anton remains independent of scrolling.
+- **Context response:** Scrolling updates which portfolio content is visible and relevant, allowing Anton to choose a new target.
+- **Physical response:** Anton is not carried by page scroll physics and does not need to move continuously while the visitor scrolls.
+- **Recorded answer:** A + C, clarified as context-aware but scroll-independent
+
+### 34. Section-Change Decision
+
+- **Decision:** When scrolling reveals a new section, Anton observes and decides autonomously whether to respond.
+- **Evaluation:** He considers the section's meaningful content, visitor activity, current state, and safe placement availability.
+- **Boundary:** A section change alone does not force an animation, greeting, or relocation.
+- **Recorded answer:** A
+
+### 35. Long-Distance Travel
+
+- **Decision:** Anton travels visibly when practical and hides when necessary.
+- **Visible travel:** He moves along nearby safe surfaces when the route is believable and non-obstructive.
+- **Hidden transition:** For distant or impractical routes, he may disappear and reappear at a safe destination.
+- **Purpose:** Preserve believable character movement without forcing long, distracting journeys.
+- **Recorded answer:** A
+
+### 36. Hiding Transition
+
+- **Decision:** Anton hides using the environment, with fading as a secondary method.
+- **Primary method:** He slips behind a card edge, image frame, component boundary, or another believable surface.
+- **Secondary method:** If no suitable environmental surface exists, he may fade out and fade back in at the destination.
+- **Style boundary:** The transition should remain cinematic and grounded rather than magical or flashy.
+- **Recorded answer:** A + B
+
+### 37. Contextual Greeting on Reappearance
+
+- **Decision:** Anton greets only when contextually appropriate.
+- **Greeting moments:** First arrival of the session, and return from hidden state caused by obstruction or lack of safe space.
+- **No repeated greeting:** Normal movement between sections or ordinary environment fades do not trigger another greeting.
+- **Recorded answer:** A
+
+## Finalized Build Direction
+
+The following implementation decisions use the recommended defaults authorized by the user for any remaining questions.
+
+### Character Asset
+
+- Build one continuous 3D Anton character from scratch.
+- Use a stylized cinematic creature design: gecko-inspired, cartoonish, expressive, and believable without being photorealistic.
+- Preserve a recognizable gecko silhouette while allowing characterful proportions and expressive gestures inspired by creature cinema such as *Rango* (2011).
+- Avoid generic mascot geometry, realistic reptile simulation, human clothing, and human facial anatomy.
+
+### Rendering Architecture
+
+- Use a single shared transparent 3D canvas layered over the portfolio rather than separate canvases per section.
+- Use React Three Fiber and Three.js as the runtime renderer, with a GLB asset as the production character format.
+- Keep the canvas cosmetic and non-blocking by default; only Anton's hit area accepts pointer input.
+- Drive placement from measured DOM surfaces and visible portfolio context, not hardcoded viewport coordinates.
+- Keep all character decisions in a deterministic state machine; React components render state and do not invent ad-hoc behavior.
+
+### Behavior Architecture
+
+- Use authored states for `arrival`, `greeting`, `explore`, `inspect`, `observe`, `react`, `rest`, `hidden`, `picked-up`, and `return`.
+- Use a context evaluator to rank technical content, nearby meaningful content, visitor activity, safe surfaces, and current visibility.
+- Use a target selector to choose one safe destination at a time.
+- Use a collision and obstruction layer to reject destinations that cover text, controls, cards, images, or other meaningful content.
+- Use visible travel for nearby targets and environment-assisted or fade transitions for distant targets.
+- Treat rest, waiting, and hiding as intentional valid states rather than failures.
+
+### Visitor Controls
+
+- Support pointer/touch click-and-hold pickup and repositioning.
+- Show a clear pickup affordance without adding a permanent control panel.
+- Allow free placement temporarily, then apply the 3–5 second obstruction correction rule.
+- Allow keyboard-accessible focus and repositioning fallback so the interaction is not pointer-only.
+- Respect `prefers-reduced-motion`; reduce movement and transitions while preserving the character's visibility and text alternatives.
+
+### Dialogue System
+
+- Keep dialogue authored, versioned, and selected by context.
+- Support three line lengths: minimal expressive captions, short contextual comments, and occasional complete sentences.
+- Keep Anton separate from the existing portfolio chatbot.
+- Never generate uncontrolled responses or use Anton to answer factual visitor questions.
+- Render dialogue as accessible text attached to Anton's current character state.
+
+### Portfolio Context Targets
+
+Prioritize targets in this order:
+
+1. Technical projects and featured work
+2. Metrics, diagrams, code-related visuals, and meaningful updates
+3. Skills and tools
+4. Experience and professional history
+5. About, profile, and personal narrative
+6. Relevant visitor activity and interface elements
+
+### Safety and Performance Contract
+
+- Anton must never permanently obscure portfolio content.
+- Anton must never trap focus, prevent scrolling, or interfere with links, buttons, forms, or the chatbot.
+- Hide or pause expensive rendering when Anton is outside the visible context, the tab is hidden, or no safe placement is available.
+- Lazy-load the 3D runtime and character asset after the portfolio's primary content is available.
+- Provide a lightweight hidden/reduced-motion fallback for unsupported devices or accessibility settings.
+- Keep the first implementation focused on one character, one shared canvas, authored behaviors, safe placement, and the pickup interaction.
+
+### Decision Precedence
+
+1. The latest decision in this harness overrides earlier interview decisions.
+2. This harness overrides legacy Anton documents and the old prototype implementation when they conflict.
+3. Safety, accessibility, and non-obstruction rules override autonomous character behavior.
+4. Character personality overrides decorative effects and unnecessary animation.
+
+## Status
+
+- **Harness state:** Complete for implementation kickoff.
+- **Character design state:** Ready for visual concept and 3D blockout.
+- **Runtime state:** Ready for a fresh Anton integration; the existing SVG/speech-bubble prototype is legacy code and should not be extended as the production implementation.
+- **Next build phase:** Create the first approved 3D concept and blockout, then integrate the shared canvas and state skeleton.
