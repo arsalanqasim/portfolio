@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { useState, useEffect } from 'react';
+import { lazy, Suspense, useState, useEffect } from 'react';
 import { Section } from './types';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -15,7 +15,8 @@ import Skills from './components/Skills';
 import About from './components/About';
 import SectionWrapper from './components/SectionWrapper';
 import PortfolioChatbot from './components/PortfolioChatbot';
-import Anton from './components/Anton/Anton';
+
+const AntonRuntime = lazy(() => import('./components/Anton/AntonRuntime'));
 
 const SECTIONS: Section[] = ['home', 'work', 'experience', 'skills', 'about'];
 
@@ -93,7 +94,9 @@ export default function App() {
 
       <Footer />
       <PortfolioChatbot />
-      <Anton />
+      <Suspense fallback={null}>
+        <AntonRuntime />
+      </Suspense>
     </div>
   );
 }

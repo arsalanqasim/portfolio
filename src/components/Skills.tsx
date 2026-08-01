@@ -22,6 +22,8 @@ export default function Skills() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.35 }}
+            data-anton-surface="skills"
+            data-anton-priority-type="content"
             className="card overflow-hidden"
           >
             <button

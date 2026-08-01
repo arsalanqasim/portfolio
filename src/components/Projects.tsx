@@ -41,6 +41,8 @@ function ProjectCard({
       viewport={{ once: true, margin: '-40px' }}
       transition={{ duration: 0.4 }}
       onClick={onSelect}
+      data-anton-surface="project"
+      data-anton-priority-type="technical"
       className="card card-lift p-6 cursor-pointer flex flex-col h-full"
     >
       <div className="aspect-[16/9] rounded-lg bg-canvas border border-border mb-5 flex items-center justify-center">

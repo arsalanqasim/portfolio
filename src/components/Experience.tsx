@@ -16,6 +16,8 @@ export default function Experience() {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, margin: '-40px' }}
           transition={{ duration: 0.4, delay: i * 0.1 }}
+          data-anton-surface="experience"
+          data-anton-priority-type="content"
           className="relative pl-6 border-l-2 border-border hover:border-accent transition-colors"
         >
           <div className="absolute -left-[5px] top-1.5 h-2 w-2 rounded-full bg-border ring-4 ring-canvas" />

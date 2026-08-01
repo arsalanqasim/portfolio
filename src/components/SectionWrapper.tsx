@@ -22,8 +22,15 @@ export default function SectionWrapper({
   children,
   className = '',
 }: SectionWrapperProps) {
+  const surfaceType = id === 'work' ? 'technical' : id === 'skills' || id === 'experience' ? 'content' : 'section';
+
   return (
-    <section id={id} className={`scroll-mt-24 py-16 md:py-20 ${className}`}>
+    <section
+      id={id}
+      data-anton-surface="section"
+      data-anton-priority-type={surfaceType}
+      className={`scroll-mt-24 py-16 md:py-20 ${className}`}
+    >
       <div className="mb-10 md:mb-12">
         <p className="section-label mb-2">{label}</p>
         <h2 className="font-serif text-3xl sm:text-4xl font-semibold text-ink tracking-tight">

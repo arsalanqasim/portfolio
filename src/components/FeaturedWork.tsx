@@ -13,6 +13,8 @@ export default function FeaturedWork() {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-80px' }}
       transition={{ duration: 0.5 }}
+      data-anton-surface="project"
+      data-anton-priority-type="technical"
       className="card card-lift overflow-hidden"
     >
       <div className="grid grid-cols-1 lg:grid-cols-5">

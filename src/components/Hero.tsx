@@ -9,7 +9,7 @@ import { CONTACT, RESUME_PATH, PROFILE_IMAGE } from '../data';
 
 export default function Hero() {
   return (
-    <section id="home" className="pt-8 pb-20 md:pt-16 md:pb-28">
+    <section id="home" data-anton-surface="section" data-anton-priority-type="content" className="pt-8 pb-20 md:pt-16 md:pb-28">
       <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-12 items-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
