@@ -1,6 +1,7 @@
 import { useAnimations, useGLTF } from '@react-three/drei';
 import { useEffect, useMemo, useRef } from 'react';
 import * as THREE from 'three';
+import * as SkeletonUtils from 'three/examples/jsm/utils/SkeletonUtils.js';
 import { AntonState, Point } from './AntonTypes';
 
 const ANTON_GLB_PATH = '/assets/anton/anton_v1.0.0.glb';
@@ -30,7 +31,7 @@ const loopingStates = new Set<AntonState>(['explore', 'observe', 'rest', 'picked
 export function AntonModel({ position, state, isDragging, reducedMotion }: AntonModelProps) {
   const group = useRef<THREE.Group>(null);
   const { scene, animations } = useGLTF(ANTON_GLB_PATH);
-  const model = useMemo(() => scene.clone(true), [scene]);
+  const model = useMemo(() => SkeletonUtils.clone(scene), [scene]);
   const { actions } = useAnimations(animations, group);
   const clipName = animationByState[state];
 
@@ -64,7 +65,7 @@ export function AntonModel({ position, state, isDragging, reducedMotion }: Anton
       position={[position.x + 58, position.y + 44, 0]}
       scale={state === 'hidden' ? 0 : isDragging ? 1.12 : 1}
     >
-      <primitive object={model} />
+      <primitive object={model} rotation={[0, Math.PI / 2, 0]} scale={[100, -100, 40]} />
     </group>
   );
 }

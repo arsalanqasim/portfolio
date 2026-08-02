@@ -29,4 +29,13 @@ describe('Anton placement engine', () => {
   it('rejects positions that overlap meaningful content', () => {
     expect(isSafeAntonPosition({ x: 120, y: 120 }, [surface], { width: 800, height: 600 })).toBe(false);
   });
+
+  it('keeps a corner fallback when content fills a narrow viewport', () => {
+    const fullViewportSurface: AntonSurface = {
+      ...surface,
+      rect: { left: 24, top: 0, right: 376, bottom: 600, width: 352, height: 600 },
+    };
+    const position = findNearestSafePosition({ x: 80, y: 80 }, [fullViewportSurface], { width: 400, height: 600 });
+    expect(position).not.toBeNull();
+  });
 });

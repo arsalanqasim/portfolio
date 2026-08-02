@@ -70,7 +70,20 @@ export function findNearestSafePosition(
     { x: Math.max(margin, position.x), y: Math.max(margin, position.y) },
   ];
 
-  return candidates
+  const safePosition = candidates
     .filter((candidate) => isSafeAntonPosition(candidate, surfaces, viewport))
+    .sort((a, b) => Math.hypot(a.x - position.x, a.y - position.y) - Math.hypot(b.x - position.x, b.y - position.y))[0] ?? null;
+
+  if (safePosition) return safePosition;
+
+  // On narrow screens the content section can cover the entire viewport. Keep
+  // Anton discoverable by falling back to a corner that only avoids explicit
+  // interaction obstacles (header, chatbot, etc.).
+  return candidates
+    .filter((candidate) => isInsideViewport(candidate, viewport))
+    .filter((candidate) => {
+      const rect = positionRect(candidate);
+      return !surfaces.some((surface) => surface.obstacle && overlaps(rect, surface.rect));
+    })
     .sort((a, b) => Math.hypot(a.x - position.x, a.y - position.y) - Math.hypot(b.x - position.x, b.y - position.y))[0] ?? null;
 }
