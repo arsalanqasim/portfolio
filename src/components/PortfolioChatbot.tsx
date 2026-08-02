@@ -4,8 +4,9 @@
  */
 
 import { useState, useRef, useEffect, FormEvent } from 'react';
-import { MessageSquare, Send, X, User, Bot, ArrowRight, RefreshCw } from 'lucide-react';
+import { Send, X, User, Bot, ArrowRight, RefreshCw } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
+import { useAntonStore } from './Anton/AntonStore';
 
 interface ChatMessage {
   id: string;
@@ -25,7 +26,8 @@ const WELCOME_MESSAGE =
   "Hi! I'm Arsalan's AI assistant. Ask me about his projects, experience, skills, or whether he's open to opportunities.";
 
 export default function PortfolioChatbot() {
-  const [isOpen, setIsOpen] = useState(false);
+  const isOpen = useAntonStore((state) => state.isChatbotOpen);
+  const setIsOpen = useAntonStore((state) => state.setChatbotOpen);
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       id: 'welcome',
@@ -113,22 +115,6 @@ export default function PortfolioChatbot() {
   return (
     <>
       <AnimatePresence>
-        {!isOpen && (
-          <motion.button
-            data-anton-obstacle="true"
-            initial={{ scale: 0.9, opacity: 0, y: 16 }}
-            animate={{ scale: 1, opacity: 1, y: 0 }}
-            exit={{ scale: 0.9, opacity: 0, y: 16 }}
-            onClick={() => setIsOpen(true)}
-            className="fixed bottom-6 right-6 z-40 flex items-center gap-2.5 bg-accent hover:bg-accent-hover text-white px-4 py-3 rounded-full shadow-lg shadow-accent/20 text-sm font-semibold transition-colors cursor-pointer"
-          >
-            <MessageSquare className="h-4 w-4" />
-            <span className="hidden sm:inline">Ask my assistant</span>
-          </motion.button>
-        )}
-      </AnimatePresence>
-
-      <AnimatePresence>
         {isOpen && (
           <motion.div
             data-anton-obstacle="true"
@@ -144,8 +130,8 @@ export default function PortfolioChatbot() {
                   <Bot className="h-4 w-4" />
                 </div>
                 <div>
-                  <h3 className="text-sm font-semibold text-ink">Arsalan's Assistant</h3>
-                  <p className="text-[10px] text-ink-muted">Powered by Gemini</p>
+                  <h3 className="text-sm font-semibold text-ink">Ask Rango</h3>
+                  <p className="text-[10px] text-ink-muted">Arsalan's AI Assistant</p>
                 </div>
               </div>
               <div className="flex items-center gap-1">

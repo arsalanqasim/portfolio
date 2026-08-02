@@ -10,7 +10,6 @@ import { Point } from './AntonTypes';
 const HOLD_DELAY = 340;
 const REACTION_DURATION = 1800;
 const CORRECTION_DELAY = 4200;
-
 function getCurrentSection(surfaces: ReturnType<typeof useAntonSurfaceRegistry>) {
   const visible = surfaces
     .filter((surface) => !surface.obstacle)
@@ -41,6 +40,7 @@ export default function AntonRuntime() {
   const visible = useAntonStore((store) => store.visible);
   const isDragging = useAntonStore((store) => store.isDragging);
   const activeSection = useAntonStore((store) => store.activeSection);
+  const isChatbotOpen = useAntonStore((store) => store.isChatbotOpen);
   const message = useAntonStore((store) => store.message);
   const sessionGreeted = useAntonStore((store) => store.sessionGreeted);
   const setState = useAntonStore((store) => store.setState);
@@ -67,8 +67,8 @@ export default function AntonRuntime() {
 
   useEffect(() => {
     const startPosition = {
-      x: Math.max(16, window.innerWidth - ANTON_SIZE.width - 150),
-      y: 72,
+      x: Math.max(48, window.innerWidth - ANTON_SIZE.width - 48),
+      y: Math.max(48, window.innerHeight - ANTON_SIZE.height - 48),
     };
     currentPosition.current = startPosition;
     lastSafePosition.current = startPosition;
@@ -142,35 +142,34 @@ export default function AntonRuntime() {
   }, [activeSection]);
 
   useEffect(() => {
-    const greeted = sessionStorage.getItem('anton-greeted-v1') === 'true';
-    setSessionGreeted(greeted);
-    if (greeted) {
-      setState('explore');
-      return;
-    }
+    // Initial greeting
+    setState('greeting');
+    const initialTimer = setTimeout(() => {
+      setState('rest');
+    }, 2000);
 
-    const arrivalTimer = window.setTimeout(() => {
-      setState('greeting');
-      setMessage(selectAntonDialogue({ state: 'greeting', sectionId: activeSectionRef.current, action: 'arrival' }));
-      sessionStorage.setItem('anton-greeted-v1', 'true');
-      setSessionGreeted(true);
-    }, reducedMotion ? 100 : 700);
-    const exploreTimer = window.setTimeout(() => {
-      setMessage(null);
-      setState('explore');
-      chooseTargetRef.current(true);
-    }, reducedMotion ? 550 : 2600);
+    // Periodically wave to grab attention
+    const waveInterval = setInterval(() => {
+      const store = useAntonStore.getState();
+      if (store.state === 'rest' && !store.isChatbotOpen && !store.isDragging) {
+        store.setState('greeting');
+        setTimeout(() => {
+          const currentStore = useAntonStore.getState();
+          if (currentStore.state === 'greeting') {
+            currentStore.setState('rest');
+          }
+        }, 2000);
+      }
+    }, 12000);
+
     return () => {
-      window.clearTimeout(arrivalTimer);
-      window.clearTimeout(exploreTimer);
+      clearTimeout(initialTimer);
+      clearInterval(waveInterval);
     };
-  }, [reducedMotion, setMessage, setSessionGreeted, setState]);
+  }, [setState]);
 
-  useEffect(() => {
-    if (!sessionGreeted || state === 'picked-up' || state === 'hidden') return;
-    const timer = window.setInterval(() => chooseTarget(), reducedMotion ? 7000 : 4200);
-    return () => window.clearInterval(timer);
-  }, [chooseTarget, reducedMotion, sessionGreeted, state]);
+  // Removed the chooseTarget setInterval so he doesn't roam
+
 
   useEffect(() => {
     currentPosition.current = position;
@@ -212,15 +211,18 @@ export default function AntonRuntime() {
 
   const beginReaction = useCallback(() => {
     if (draggingRef.current) return;
+    
+    // Toggle Chatbot!
+    const store = useAntonStore.getState();
+    store.setChatbotOpen(!store.isChatbotOpen);
+
     setState('react');
-    setMessage(selectAntonDialogue({ state: 'react', sectionId: activeSection, action: 'click' }));
     if (reactionTimer.current) window.clearTimeout(reactionTimer.current);
     reactionTimer.current = window.setTimeout(() => {
-      setMessage(null);
-      setState('explore');
-      chooseTarget(true);
+      // Return to resting instead of roaming
+      setState('rest');
     }, reducedMotion ? 350 : REACTION_DURATION);
-  }, [activeSection, chooseTarget, reducedMotion, setMessage, setState]);
+  }, [reducedMotion, setState]);
 
   const startDrag = useCallback(() => {
     if (holdTimer.current) window.clearTimeout(holdTimer.current);
@@ -259,26 +261,22 @@ export default function AntonRuntime() {
       const safe = isSafeAntonPosition(dropped, surfaces, { width: window.innerWidth, height: window.innerHeight });
       if (safe) {
         lastSafePosition.current = dropped;
-        setState('explore');
-        chooseTarget(true);
+        setState('rest');
         return;
       }
       const nearest = findNearestSafePosition(dropped, surfaces, { width: window.innerWidth, height: window.innerHeight });
       if (nearest) {
         setTargetPosition(nearest);
         setState('return');
-        setMessage(selectAntonDialogue({ state: 'return', sectionId: activeSection, action: 'return' }));
         window.setTimeout(() => {
-          setMessage(null);
-          setState('explore');
-          chooseTarget(true);
+          setState('rest');
         }, reducedMotion ? 350 : 1300);
       } else {
         setVisible(false);
         setState('hidden');
       }
     }, reducedMotion ? 0 : CORRECTION_DELAY);
-  }, [activeSection, beginReaction, chooseTarget, reducedMotion, setDragging, setMessage, setPosition, setState, setTargetPosition, setVisible, surfaces]);
+  }, [reducedMotion, setDragging, setPosition, setState, setTargetPosition, setVisible, surfaces]);
 
   const onKeyDown = useCallback((event: React.KeyboardEvent<HTMLDivElement>) => {
     if (event.key === 'Escape' && draggingRef.current) {
@@ -317,7 +315,9 @@ export default function AntonRuntime() {
     height: ANTON_SIZE.height,
   }), [position]);
 
-  if (webGL === false || !initialized) return null;
+  if (webGL === false || !initialized || isChatbotOpen) return null;
+
+  const isAnimating = state === 'greeting' || state === 'react';
 
   return (
     <div className="fixed inset-0 z-[35] pointer-events-none" aria-label="Anton, Arsalan's interactive 3D gecko companion">
@@ -352,14 +352,14 @@ export default function AntonRuntime() {
             onPointerCancel={endDrag}
             onKeyDown={onKeyDown}
           />
-          {message && (
+          {isAnimating && (
             <div
               role="status"
               aria-live="polite"
-              className="absolute max-w-[190px] -translate-y-full rounded-full border border-border bg-surface/95 px-3 py-1.5 text-[11px] font-medium text-ink-secondary shadow-sm pointer-events-none"
-              style={{ left: position.x + 8, top: position.y - 6 }}
+              className="absolute max-w-[190px] -translate-y-full rounded-full border border-border bg-surface/95 px-3 py-1.5 text-[12px] font-semibold text-accent shadow-sm pointer-events-none whitespace-nowrap"
+              style={{ left: position.x + 8, top: position.y - 40 }}
             >
-              {message}
+              Ask Rango
             </div>
           )}
         </>

@@ -11,6 +11,7 @@ interface AntonStore {
   activeSection: string;
   message: string | null;
   sessionGreeted: boolean;
+  isChatbotOpen: boolean;
   setState: (state: AntonState) => void;
   setPosition: (position: Point) => void;
   setTargetPosition: (position: Point | null) => void;
@@ -19,6 +20,7 @@ interface AntonStore {
   setActiveSection: (section: string) => void;
   setMessage: (message: string | null) => void;
   setSessionGreeted: (value: boolean) => void;
+  setChatbotOpen: (value: boolean) => void;
 }
 
 export const useAntonStore = create<AntonStore>((set) => ({
@@ -31,6 +33,7 @@ export const useAntonStore = create<AntonStore>((set) => ({
   activeSection: 'home',
   message: null,
   sessionGreeted: false,
+  isChatbotOpen: false,
   setState: (state) => set((current) => ({ previousState: current.state, state })),
   setPosition: (position) => set({ position }),
   setTargetPosition: (targetPosition) => set({ targetPosition }),
@@ -39,4 +42,5 @@ export const useAntonStore = create<AntonStore>((set) => ({
   setActiveSection: (activeSection) => set({ activeSection }),
   setMessage: (message) => set({ message }),
   setSessionGreeted: (sessionGreeted) => set({ sessionGreeted }),
+  setChatbotOpen: (isChatbotOpen) => set({ isChatbotOpen }),
 }));

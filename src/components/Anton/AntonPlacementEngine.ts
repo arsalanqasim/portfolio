@@ -1,6 +1,6 @@
 import { AntonSurface, AntonTarget, Point, Rect } from './AntonTypes';
 
-export const ANTON_SIZE = { width: 112, height: 92 };
+export const ANTON_SIZE = { width: 160, height: 140 };
 
 function overlaps(a: Rect, b: Rect) {
   return a.left < b.right && a.right > b.left && a.top < b.bottom && a.bottom > b.top;
@@ -61,7 +61,7 @@ export function findNearestSafePosition(
   surfaces: AntonSurface[],
   viewport: { width: number; height: number },
 ): Point | null {
-  const margin = 16;
+  const margin = 48;
   const candidates: Point[] = [
     { x: margin, y: margin },
     { x: viewport.width - ANTON_SIZE.width - margin, y: margin },

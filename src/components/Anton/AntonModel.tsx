@@ -1,11 +1,12 @@
 import { useFrame } from '@react-three/fiber';
 import { useRef, useMemo, useEffect } from 'react';
 import * as THREE from 'three';
-import { useFBX, useAnimations } from '@react-three/drei';
+import { useGLTF, useAnimations, Center } from '@react-three/drei';
 import * as SkeletonUtils from 'three/examples/jsm/utils/SkeletonUtils.js';
 import { AntonState, Point } from './AntonTypes';
 
-const RANGO_ANIMATED_FBX_PATH = '/assets/anton/Waving.fbx';
+const RANGO_ANIMATED_GLB_PATH = '/assets/anton/rango_animated.glb';
+const RANGO_STATIC_GLB_PATH = '/assets/anton/rango.glb';
 
 interface AntonModelProps {
   position: Point;
@@ -18,36 +19,45 @@ export function AntonModel({ position, state, isDragging, reducedMotion }: Anton
   const group = useRef<THREE.Group>(null);
   const rootRef = useRef<THREE.Group>(null);
   
-  // Load the downloaded Mixamo FBX directly to preserve its embedded colors/textures
-  const fbx = useFBX(RANGO_ANIMATED_FBX_PATH);
+  // Load BOTH GLB files. 
+  // We use the animated one for the skeleton/geometry, and the static one to steal its perfect colored material!
+  const animatedGLTF = useGLTF(RANGO_ANIMATED_GLB_PATH);
+  const staticGLTF = useGLTF(RANGO_STATIC_GLB_PATH);
   
   const model = useMemo(() => {
-    // SkeletonUtils.clone is crucial for rigged models
-    const cloned = SkeletonUtils.clone(fbx);
+    const cloned = SkeletonUtils.clone(animatedGLTF.scene);
+    
+    // Find the perfect material from the static GLB
+    const perfectMaterial = Object.values(staticGLTF.materials).find(m => m.name === 'Rango');
+    
     cloned.traverse((node) => {
       if ((node as THREE.Mesh).isMesh) {
         node.castShadow = true;
         node.receiveShadow = true;
+        
+        // Apply the colored material if found
+        if (perfectMaterial) {
+           (node as THREE.Mesh).material = perfectMaterial;
+           // Fix inverted normals caused by negative scaling in previous iterations, just to be extremely safe
+           perfectMaterial.side = THREE.DoubleSide;
+        }
       }
     });
     return cloned;
-  }, [fbx]);
+  }, [animatedGLTF.scene, staticGLTF.materials]);
 
-  const { actions } = useAnimations(fbx.animations, rootRef);
+  const { actions } = useAnimations(animatedGLTF.animations, rootRef);
 
   useEffect(() => {
-    // Mixamo animations are typically named 'mixamo.com' or 'Armature|mixamo.com|Layer0'
-    // Let's grab the first animation track available.
-    const animName = fbx.animations.length > 0 ? fbx.animations[0].name : null;
+    const animName = animatedGLTF.animations.length > 0 ? animatedGLTF.animations[0].name : null;
     const greetingAction = animName ? actions[animName] : null;
-    
-    if (state === 'greeting' && greetingAction) {
+
+    if ((state === 'greeting' || state === 'react') && greetingAction) {
       greetingAction.reset().fadeIn(0.2).play();
     } else if (greetingAction) {
-      // Fade out if leaving greeting state
       greetingAction.fadeOut(0.2);
     }
-  }, [state, actions, fbx.animations]);
+  }, [state, actions, animatedGLTF.animations]);
 
   // Procedural Animation Engine
   useFrame((stateCtx) => {
@@ -69,23 +79,25 @@ export function AntonModel({ position, state, isDragging, reducedMotion }: Anton
   });
 
   const baseScale = state === 'hidden' ? 0 : isDragging ? 1.15 : 1;
-  
-  // FBX models from Mixamo are usually scaled 100x larger (cm instead of m).
-  // I will drastically reduce the scale from 85 to 0.5 to fix him appearing huge and stuck in the top corner.
-  const targetScale = baseScale * 0.5; 
+  const targetScale = baseScale * 120; 
 
   return (
     <group
-      position={[position.x + 58, position.y + 44, 0]}
-      scale={[targetScale, targetScale * -1, targetScale]} 
+      position={[position.x + 80, position.y + 110, 0]}
+      // Scale is strictly positive to prevent normal inversion!
+      scale={[targetScale, targetScale, targetScale]} 
     >
        <group ref={group}>
          <group ref={rootRef}>
-            <primitive object={model} rotation={[0, 0, 0]} />
+            <Center>
+              {/* Rotate by 180 degrees on X (flips right-side up for Ortho cam) and Y (faces camera) */}
+              <primitive object={model} rotation={[Math.PI, Math.PI, 0]} />
+            </Center>
          </group>
        </group>
     </group>
   );
 }
 
-useFBX.preload(RANGO_ANIMATED_FBX_PATH);
+useGLTF.preload(RANGO_ANIMATED_GLB_PATH);
+useGLTF.preload(RANGO_STATIC_GLB_PATH);
