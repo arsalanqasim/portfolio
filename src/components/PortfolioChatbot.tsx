@@ -56,7 +56,6 @@ export default function PortfolioChatbot() {
 
   const [inputText, setInputText] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
@@ -79,7 +78,6 @@ export default function PortfolioChatbot() {
   const handleSendMessage = async (textToSend: string) => {
     if (!textToSend.trim() || isLoading) return;
 
-    setErrorMessage(null);
     const userMsg: ChatMessage = {
       id: `user-${Date.now()}`,
       sender: 'user',
@@ -91,6 +89,8 @@ export default function PortfolioChatbot() {
     setMessages(updatedMessages);
     setInputText('');
     setIsLoading(true);
+
+    const assistantMessageId = `assistant-${Date.now()}`;
 
     try {
       // 1. Rolling window: Slice last 10 messages (approx 5 turns) to prevent token/cost bloat
@@ -116,7 +116,6 @@ export default function PortfolioChatbot() {
       const decoder = new TextDecoder();
       let done = false;
       let assistantText = '';
-      const assistantMessageId = `assistant-${Date.now()}`;
 
       // Insert an empty assistant message which we will stream into
       setMessages((prev) => [
@@ -191,9 +190,32 @@ export default function PortfolioChatbot() {
         }
       }
       
-      setErrorMessage(friendlyError);
-      // Remove any trailing empty streaming message if it failed at the start
-      setMessages((prev) => prev.filter((msg) => msg.text !== ''));
+      // Write/append the error directly in the assistant's message bubble
+      setMessages((prev) => {
+        const lastMsg = prev[prev.length - 1];
+        if (lastMsg && lastMsg.id === assistantMessageId) {
+          return prev.map((msg) =>
+            msg.id === assistantMessageId
+              ? {
+                  ...msg,
+                  text: msg.text
+                    ? `${msg.text}\n\n${friendlyError}`
+                    : friendlyError,
+                }
+              : msg
+          );
+        } else {
+          return [
+            ...prev,
+            {
+              id: assistantMessageId,
+              sender: 'assistant',
+              text: friendlyError,
+              timestamp: new Date(),
+            },
+          ];
+        }
+      });
     } finally {
       setIsLoading(false);
     }
@@ -214,7 +236,6 @@ export default function PortfolioChatbot() {
         timestamp: new Date(),
       },
     ]);
-    setErrorMessage(null);
     try {
       window.sessionStorage.removeItem(SESSION_STORAGE_KEY);
     } catch (e) {
@@ -359,11 +380,7 @@ export default function PortfolioChatbot() {
                 </div>
               )}
 
-              {errorMessage && (
-                <div className="p-3.5 bg-red-50/70 dark:bg-red-950/20 border border-red-200 dark:border-red-900/50 rounded-xl text-xs text-red-600 dark:text-red-400">
-                  {errorMessage}
-                </div>
-              )}
+
 
               <div ref={messagesEndRef} />
             </div>
