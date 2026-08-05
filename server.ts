@@ -7,11 +7,35 @@ import express from 'express';
 import path from 'path';
 import fs from 'fs';
 import { createServer as createViteServer } from 'vite';
-import { GoogleGenAI } from '@google/genai';
+import { GoogleGenAI, HarmCategory, HarmBlockThreshold } from '@google/genai';
 import dotenv from 'dotenv';
+import rateLimit from 'express-rate-limit';
 
 // Load environment variables
 dotenv.config();
+
+// Rate limiter for chat endpoint to prevent abuse
+const chatLimiter = rateLimit({
+  windowMs: 10 * 60 * 1000, // 10 minutes
+  max: 20, // limit each IP to 20 requests per windowMs
+  message: { error: 'Too many chat requests from this IP. Please try again after 10 minutes.' },
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+
+// Dynamically load the Rango knowledge base from rango_knowledge.md if available
+function getSystemInstruction(): string {
+  try {
+    const knowledgePath = path.join(process.cwd(), 'rango_knowledge.md');
+    if (fs.existsSync(knowledgePath)) {
+      return fs.readFileSync(knowledgePath, 'utf8');
+    }
+  } catch (err) {
+    console.error('Error loading rango_knowledge.md:', err);
+  }
+  return SYSTEM_INSTRUCTION;
+}
+
 
 // Lazily initialize Gemini client to avoid crashing if GEMINI_API_KEY is missing on startup
 let aiClient: GoogleGenAI | null = null;
@@ -171,8 +195,8 @@ async function startServer() {
     }
   });
 
-  // Chatbot proxy endpoint
-  app.post('/api/chat', async (req, res) => {
+  // Chatbot proxy endpoint - rate limited & streaming
+  app.post('/api/chat', chatLimiter, async (req, res) => {
     try {
       const { messages } = req.body;
       if (!messages || !Array.isArray(messages)) {
@@ -180,7 +204,25 @@ async function startServer() {
         return;
       }
 
-      // Format simple UI messages to Gemini's expected Content format
+      // Input Validation: Validate latest message length & empty state
+      const latestMessage = messages[messages.length - 1];
+      if (!latestMessage || typeof latestMessage.text !== 'string') {
+        res.status(400).json({ error: 'Missing or invalid message object' });
+        return;
+      }
+
+      const trimmedText = latestMessage.text.trim();
+      if (trimmedText.length === 0) {
+        res.status(400).json({ error: 'Message content cannot be empty' });
+        return;
+      }
+
+      if (trimmedText.length > 500) {
+        res.status(400).json({ error: 'Message exceeds the 500-character limit' });
+        return;
+      }
+
+      // Format simple UI messages to Gemini's expected Content format:
       // [{ role: 'user' | 'model', parts: [{ text: string }] }]
       const formattedContents = messages.map((m: any) => {
         return {
@@ -192,24 +234,59 @@ async function startServer() {
       // Fetch the lazily-initialized Gemini client
       const ai = getGeminiClient();
 
-      const response = await ai.models.generateContent({
+      // Set headers for Server-Sent Events (SSE)
+      res.writeHead(200, {
+        'Content-Type': 'text/event-stream',
+        'Cache-Control': 'no-cache',
+        'Connection': 'keep-alive',
+      });
+
+      const responseStream = await ai.models.generateContentStream({
         model: 'gemini-3.5-flash',
         contents: formattedContents,
         config: {
-          systemInstruction: SYSTEM_INSTRUCTION,
+          systemInstruction: getSystemInstruction(),
           temperature: 0.7,
           topP: 0.95,
+          safetySettings: [
+            {
+              category: HarmCategory.HARM_CATEGORY_HARASSMENT,
+              threshold: HarmBlockThreshold.BLOCK_LOW_AND_ABOVE,
+            },
+            {
+              category: HarmCategory.HARM_CATEGORY_HATE_SPEECH,
+              threshold: HarmBlockThreshold.BLOCK_LOW_AND_ABOVE,
+            },
+            {
+              category: HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT,
+              threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
+            },
+            {
+              category: HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT,
+              threshold: HarmBlockThreshold.BLOCK_LOW_AND_ABOVE,
+            },
+          ]
         }
       });
 
-      const replyText = response.text || "I'm sorry, I couldn't process that request at the moment.";
-      res.json({ text: replyText });
+      for await (const chunk of responseStream) {
+        const chunkText = chunk.text || '';
+        res.write(`data: ${JSON.stringify({ text: chunkText })}\n\n`);
+      }
+
+      res.write('data: [DONE]\n\n');
+      res.end();
     } catch (error: any) {
       console.error('Error in /api/chat handler:', error);
-      res.status(500).json({ 
-        error: error.message || 'Internal Server Error',
-        details: 'Ensure your GEMINI_API_KEY is configured in the application secrets.'
-      });
+      if (res.headersSent) {
+        res.write(`data: ${JSON.stringify({ error: error.message || 'Stream interrupted' })}\n\n`);
+        res.end();
+      } else {
+        res.status(500).json({ 
+          error: error.message || 'Internal Server Error',
+          details: 'Ensure your GEMINI_API_KEY is configured in the application secrets.'
+        });
+      }
     }
   });
 
