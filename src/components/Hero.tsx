@@ -17,16 +17,16 @@ export default function Hero() {
           transition={{ duration: 0.5, ease: 'easeOut' }}
           className="md:col-span-7 space-y-6"
         >
-          <p className="section-label">AI / ML Engineer</p>
+          <p className="section-label">AI / ML & Agentic Systems Engineer</p>
 
           <h1 className="font-serif text-4xl sm:text-5xl lg:text-[3.25rem] font-semibold text-ink leading-[1.15] tracking-tight">
-            I build machine learning systems that work in the real world.
+            I build machine learning systems and agentic applications that scale.
           </h1>
 
           <p className="text-lg text-ink-secondary leading-relaxed max-w-xl">
-            I'm Arsalan — a final-year AI student at COMSATS Islamabad and freelance engineer.
-            I work on computer vision, neural ODEs, reinforcement learning, and automation pipelines
-            that save people real time.
+            I'm Arsalan — a final-year AI student at COMSATS Islamabad and group leader intern. 
+            I build end-to-end AI systems, multi-agent architectures, RAG pipelines, and workflow automations 
+            that deliver measurable efficiency.
           </p>
 
           <div className="flex flex-wrap gap-3 pt-1">

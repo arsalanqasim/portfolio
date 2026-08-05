@@ -4,9 +4,8 @@
  */
 
 import { useState, useRef, useEffect, FormEvent } from 'react';
-import { Send, X, User, Bot, ArrowRight, RefreshCw } from 'lucide-react';
+import { Send, X, User, Bot, ArrowRight, RefreshCw, MessageSquare } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
-import { useAntonStore } from './Anton/AntonStore';
 
 interface ChatMessage {
   id: string;
@@ -26,8 +25,7 @@ const WELCOME_MESSAGE =
   "Hi! I'm Arsalan's AI assistant. Ask me about his projects, experience, skills, or whether he's open to opportunities.";
 
 export default function PortfolioChatbot() {
-  const isOpen = useAntonStore((state) => state.isChatbotOpen);
-  const setIsOpen = useAntonStore((state) => state.setChatbotOpen);
+  const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       id: 'welcome',
@@ -115,6 +113,22 @@ export default function PortfolioChatbot() {
   return (
     <>
       <AnimatePresence>
+        {!isOpen && (
+          <motion.button
+            key="chat-trigger"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.8 }}
+            transition={{ duration: 0.2 }}
+            onClick={() => setIsOpen(true)}
+            className="fixed bottom-6 right-6 z-40 p-4 bg-accent hover:bg-accent-hover text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-200 cursor-pointer flex items-center justify-center group border border-border/10"
+            title="Open chat assistant"
+            aria-label="Open chat assistant"
+          >
+            <MessageSquare className="h-6 w-6 group-hover:scale-110 transition-transform duration-200" />
+          </motion.button>
+        )}
+
         {isOpen && (
           <motion.div
             data-anton-obstacle="true"

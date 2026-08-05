@@ -12,6 +12,11 @@ import {
   Eye,
   Gamepad2,
   Bug,
+  Globe,
+  Leaf,
+  Bot,
+  Brain,
+  FileSpreadsheet,
   Github,
   X,
   ExternalLink,
@@ -23,6 +28,11 @@ const iconMap: Record<string, typeof Activity> = {
   Eye,
   Gamepad2,
   Bug,
+  Globe,
+  Leaf,
+  Bot,
+  Brain,
+  FileSpreadsheet,
 };
 
 function ProjectCard({
@@ -33,6 +43,19 @@ function ProjectCard({
   onSelect: () => void;
 }) {
   const Icon = iconMap[project.icon] || Activity;
+
+  const gradients: Record<string, string> = {
+    'Final Year Project': 'from-orange-500/10 via-amber-500/5 to-transparent',
+    'Full-Stack Agentic AI': 'from-blue-500/10 via-indigo-500/5 to-transparent',
+    'Kaggle × Google Capstone': 'from-emerald-500/10 via-teal-500/5 to-transparent',
+    'Slack Agent For Good': 'from-purple-500/10 via-fuchsia-500/5 to-transparent',
+    'NLP System': 'from-sky-500/10 via-cyan-500/5 to-transparent',
+    'Computer Vision': 'from-rose-500/10 via-red-500/5 to-transparent',
+    'Reinforcement Learning': 'from-violet-500/10 via-purple-500/5 to-transparent',
+    'Business Automation': 'from-yellow-500/10 via-amber-500/5 to-transparent',
+  };
+
+  const gradientClass = gradients[project.tag] || 'from-stone-500/10 to-transparent';
 
   return (
     <motion.article
@@ -45,10 +68,19 @@ function ProjectCard({
       data-anton-priority-type="technical"
       className="card card-lift p-6 cursor-pointer flex flex-col h-full"
     >
-      <div className="aspect-[16/9] rounded-lg bg-canvas border border-border mb-5 flex items-center justify-center">
-        <div className="text-center">
-          <ImageIcon className="h-6 w-6 text-ink-muted/50 mx-auto mb-2" />
-          <span className="text-xs text-ink-muted">Screenshot coming soon</span>
+      <div className={`aspect-[16/9] rounded-lg bg-gradient-to-br ${gradientClass} border border-border mb-5 flex items-center justify-center relative overflow-hidden group`}>
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(0,0,0,0.015)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,0,0,0.015)_1px,transparent_1px)] bg-[size:14px_24px]" />
+        <div className="absolute -right-10 -top-10 w-32 h-32 rounded-full bg-accent/5 blur-2xl group-hover:bg-accent/10 transition-all duration-300" />
+        <div className="text-center z-10 px-4">
+          <div className="inline-flex p-3 rounded-xl bg-white border border-border/80 shadow-sm text-accent mb-2.5 group-hover:scale-110 transition-transform duration-200">
+            <Icon className="h-6 w-6" />
+          </div>
+          <h4 className="font-serif text-sm font-semibold text-ink leading-none mb-1">
+            {project.title}
+          </h4>
+          <span className="text-[10px] uppercase tracking-wider text-ink-muted font-medium">
+            {project.category}
+          </span>
         </div>
       </div>
 
@@ -85,18 +117,43 @@ function ProjectCard({
 
 export default function Projects() {
   const [selected, setSelected] = useState<Project | null>(null);
+  const [showAll, setShowAll] = useState(false);
+
+  const visibleProjects = showAll ? PROJECTS : PROJECTS.slice(0, 4);
 
   return (
     <>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {PROJECTS.map((project) => (
-          <ProjectCard
-            key={project.id}
-            project={project}
-            onSelect={() => setSelected(project)}
-          />
-        ))}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
+        <AnimatePresence mode="popLayout">
+          {visibleProjects.map((project) => (
+            <motion.div
+              key={project.id}
+              layout
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.96, y: 12 }}
+              transition={{ duration: 0.3 }}
+              className="h-full"
+            >
+              <ProjectCard
+                project={project}
+                onSelect={() => setSelected(project)}
+              />
+            </motion.div>
+          ))}
+        </AnimatePresence>
       </div>
+
+      {PROJECTS.length > 4 && (
+        <div className="mt-8 flex justify-center">
+          <button
+            onClick={() => setShowAll(!showAll)}
+            className="inline-flex items-center gap-2 rounded-lg border border-border bg-surface px-5 py-2.5 text-sm font-semibold text-ink-secondary hover:border-accent hover:text-accent transition-colors cursor-pointer shadow-sm hover:shadow"
+          >
+            {showAll ? 'Show fewer projects' : 'Show more projects'}
+          </button>
+        </div>
+      )}
 
       <AnimatePresence>
         {selected && (
@@ -155,17 +212,30 @@ export default function Projects() {
                 </p>
               </div>
 
-              {selected.githubUrl && (
-                <div className="px-6 pb-6">
-                  <a
-                    href={selected.githubUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 rounded-lg bg-accent px-4 py-2 text-sm font-semibold text-white hover:bg-accent-hover transition-colors"
-                  >
-                    <ExternalLink className="h-3.5 w-3.5" />
-                    View on GitHub
-                  </a>
+              {(selected.githubUrl || selected.liveUrl) && (
+                <div className="px-6 pb-6 flex flex-wrap gap-3">
+                  {selected.githubUrl && (
+                    <a
+                      href={selected.githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 rounded-lg border border-border bg-surface px-4 py-2 text-sm font-semibold text-ink-secondary hover:border-accent hover:text-accent transition-colors cursor-pointer"
+                    >
+                      <Github className="h-4 w-4" />
+                      View on GitHub
+                    </a>
+                  )}
+                  {selected.liveUrl && (
+                    <a
+                      href={selected.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 rounded-lg bg-accent px-4 py-2 text-sm font-semibold text-white hover:bg-accent-hover transition-colors cursor-pointer"
+                    >
+                      <ExternalLink className="h-4 w-4" />
+                      Live Demo
+                    </a>
+                  )}
                 </div>
               )}
             </motion.div>

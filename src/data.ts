@@ -12,33 +12,106 @@ export const PROJECTS: Project[] = [
     icon: 'Activity',
     tag: 'Final Year Project',
     description:
-      'I am building a hybrid system for personalized glycemic response prediction — combining LSTM/Transformer encoders with Neural ODEs constrained by biological mass-balance rules, plus meal-image nutrition estimation via FastSAM and Depth Anything V2.',
-    stack: 'Python, PyTorch, SciPy, TorchDiffeq',
+      'Developing a hybrid neuro-symbolic system for personalized glycemic response prediction, combining LSTM/Transformer encoders for metabolic pattern learning with biological mass-balance constrained Neural ODEs, and meal-image nutrition estimation using FastSAM and Depth Anything V2.',
+    stack: 'Python, PyTorch, SciPy, TorchDiffeq, FastSAM, Depth Anything V2',
     impact:
-      'Aims to produce physiologically realistic glucose curves and portion-size estimates from meal photos and patient data.',
+      'Aims to generate physiologically realistic continuous glucose curves and precise portion-size estimates from patient metrics and meal photos.',
     category: 'Deep Learning & Bioinformatics',
     detailedSpecs: {
-      input: 'OhioT1DM / Shanghai T2DM datasets, meal images, patient metrics',
-      output: 'Personalized glycemic curves, nutrition and portion estimates',
-      approach: 'Neural ODE solver with biological constraints + encoder-decoder pattern learning',
+      input: 'OhioT1DM / Shanghai T2DM datasets, patient physiological metrics, meal images',
+      output: 'Personalized continuous glucose curves, nutrition and portion estimates',
+      approach: 'Neural ODE solver with mass-balance constraints + multi-modal encoders',
+    },
+  },
+  {
+    id: 'opportunity-pulse',
+    title: 'OpportunityPulse AI',
+    icon: 'Globe',
+    tag: 'Full-Stack Agentic AI',
+    description:
+      'An Agentic AI-powered career growth platform and opportunity radar for Pakistani student developers, scraping and matching high-yield opportunities (hackathons, scholarships, internships) using structured data ingestion, profile alignment, and AI-driven pitch drafting.',
+    stack: 'TypeScript, React 18, Vite, Tailwind CSS, Google Gemini API, Supabase, Vercel',
+    impact:
+      'Built a multi-agent system (Ingestion, Matching, Copilot agents) with 100% test coverage using Vitest/Playwright, complete with local smart-heuristic fallback engine to bypass cost/latency.',
+    category: 'Agentic Web App',
+    githubUrl: 'https://github.com/arsalanqasim/act-ai-final-project',
+    liveUrl: 'https://opportunity-pulse-ai.vercel.app/',
+    detailedSpecs: {
+      input: 'Unstructured opportunity text, URLs, and student profile preferences',
+      output: 'Matched opportunities (0-100%), markdown cover letters/proposals, task pipeline',
+      approach: 'Multi-agent state machine + local fallback text extraction (Jaccard Similarity, TF-IDF)',
+    },
+  },
+  {
+    id: 'ecoflow',
+    title: 'EcoFlow CBAM Auditor',
+    icon: 'Leaf',
+    tag: 'Kaggle × Google Capstone',
+    description:
+      'An enterprise-grade multi-agent supply chain carbon auditing platform built with the Google AI Stack. It automates Scope 3 carbon tracking across supplier networks, audits import shipments against EU CBAM regulations, and implements autonomous self-reflection and recovery execution.',
+    stack: 'Python, FastAPI, React, Google ADK 2.0, Model Context Protocol (FastMCP), PostgreSQL',
+    impact:
+      'Increased task success rate from 66.0% baseline to 92.9% via dynamic DAG recovery, and reached a 98.8% reliability score for audited compliance checks.',
+    category: 'Multi-Agent Auditing',
+    githubUrl: 'https://github.com/arsalanqasim/ecoflow',
+    detailedSpecs: {
+      input: 'Confidential supplier logs, shipping manifests, EU CBAM regulation databases',
+      output: 'Audited carbon tracking scores, compliance flags, self-reflection audit logs',
+      approach: 'Federated peer-to-peer Agent-to-Agent (A2A) carbon data negotiation + FastMCP tools',
+    },
+  },
+  {
+    id: 'verity',
+    title: 'Verity Fact-Checker',
+    icon: 'Bot',
+    tag: 'Slack Agent For Good',
+    description:
+      'An AI-powered Slack workspace agent that automatically extracts, verifies, and synthesizes claims from plain text, YouTube transcripts, and web articles, returning structured fact-checking verdicts with source-quality weighting directly inside message threads.',
+    stack: 'Python, Slack Bolt SDK, Gemini 3.1 Flash-Lite, Brave Search MCP, Docker, Oracle Cloud',
+    impact:
+      'Submitted to the Slack Agent Builder Challenge; automates credibility checks with zero-guess safety (fallback verification returns unverifiable rather than hallucinatory citations).',
+    category: 'AI Assistant & Slack Bot',
+    githubUrl: 'https://github.com/arsalanqasim/verity-fact-checker',
+    detailedSpecs: {
+      input: 'Slack message texts, YouTube transcript links, article URLs',
+      output: 'Structured fact verdicts (True, False, Misleading) with confidence indicators',
+      approach: 'LLM claim parser + Model Context Protocol Brave Search integration + forced JSON schema outputs',
+    },
+  },
+  {
+    id: 'triage-iq',
+    title: 'TriageIQ',
+    icon: 'Brain',
+    tag: 'NLP System',
+    description:
+      'An end-to-end Machine Learning system that automatically classifies raw support tickets and repository issues by Category, Priority, and Intent, featuring dual ML backends and interactive monitoring.',
+    stack: 'Python, FastAPI, Streamlit, Scikit-learn, HuggingFace Transformers, MLflow, Docker',
+    impact:
+      'Achieved 0.979 Intent classification accuracy on the Bitext Customer Support dataset (27 intents) and 0.675 Micro F1 category classification across 100k+ GitHub issues.',
+    category: 'Natural Language Processing',
+    githubUrl: 'https://github.com/arsalanqasim/triageiq',
+    detailedSpecs: {
+      input: 'Unstructured customer support messages, GitHub issues/tickets',
+      output: 'Standardized Category, Priority, and Intent predictions',
+      approach: 'Dual-backend execution: TF-IDF + Logistic Regression vs. fine-tuned DistilBERT + MLflow tracking',
     },
   },
   {
     id: 'driver-drowsiness',
-    title: 'Driver Drowsiness Detection',
+    title: 'SafeDrive Pro',
     icon: 'Eye',
     tag: 'Computer Vision',
     description:
-      'I built a real-time pipeline that fuses a fine-tuned YOLOv8s model (2,400 custom training images) with MediaPipe Face Mesh through an OR-gate fusion architecture.',
-    stack: 'Python, PyTorch, OpenCV, CustomTkinter',
+      'A real-time Driver Monitoring System (DMS) detecting fatigue and distraction using a hybrid CV pipeline, fusing a custom YOLOv8s model with MediaPipe Face Mesh landmarks via an OR-gate fusion architecture.',
+    stack: 'Python, YOLOv8, MediaPipe Face Mesh, OpenCV, CustomTkinter, Pygame',
     impact:
-      '95.2% precision, 97.9% recall, 99.0 mAP50 on a 500-image test set — running at ~55 FPS on RTX 4060, validated on live 30 FPS webcam.',
+      '93.7% precision, 98.3% recall, 99.0 mAP@50. Reached real-time inference rate exceeding 55 FPS (18.1ms frame latency) on an RTX 4060 GPU with a 3-stage warning/SOS protocol.',
     category: 'Computer Vision',
     githubUrl: 'https://github.com/arsalanqasim/real-time-driver-drowsiness-detection',
     detailedSpecs: {
-      input: 'Live webcam stream at 30 FPS',
-      output: 'Drowsiness metrics with 3-stage warning / SOS protocol',
-      approach: 'YOLOv8s detection + MediaPipe landmark tracking with OR-gate fusion',
+      input: 'Live camera stream at 30 FPS',
+      output: 'Fatigue Score, EAR (Eye Aspect Ratio), MAR (Mouth Aspect Ratio), head-pose metrics',
+      approach: 'YOLOv8 appearance cues + MediaPipe landmark geometry in a low-latency thread-safe queue',
     },
   },
   {
@@ -47,34 +120,34 @@ export const PROJECTS: Project[] = [
     icon: 'Gamepad2',
     tag: 'Reinforcement Learning',
     description:
-      'I designed a custom Pygame simulation environment with a Gym-compatible interface — dynamic urban obstacles, curriculum learning, and a Dueling/Double DQN agent on 6×32×32 observation tensors.',
-    stack: 'Python, Pygame, NumPy, PyTorch',
+      'A custom Pygame simulation environment featuring a Gym-compatible interface, where a Dueling/Double DQN agent was trained for autonomous drone navigation in a cyberpunk 2D city layout.',
+    stack: 'Python, Pygame, OpenAI Gym, Dueling/Double DQN, CNNs, NumPy, PyTorch',
     impact:
-      'Trained autonomous navigation agents across complex obstacle grids over 1,500–3,000 episodes.',
+      'Designed CNN-based state observer (6×32×32 tensors). Diagnosed convergence failure under sparse rewards and successfully resolved via curriculum learning over 1,500–3,000 episodes.',
     category: 'Reinforcement Learning',
     githubUrl: 'https://github.com/arsalanqasim/neon-dqn-drone-lab',
     detailedSpecs: {
-      input: '6×32×32 grid observation tensors',
-      output: 'Motor and steering control vectors',
-      approach: 'Dueling/Double DQN with 3-layer CNN and curriculum learning',
+      input: '6×32×32 grid observation tensors of urban environment',
+      output: 'Drone motor and steering control vectors (thrust, yaw)',
+      approach: '3-layer CNN encoder feeding double DQN layers under gradually increasing environmental complexity',
     },
   },
   {
-    id: 'triage-iq',
-    title: 'GitHub Issue Triage Tool',
-    icon: 'Bug',
-    tag: 'NLP',
+    id: 'safex-portfolio',
+    title: 'SafeX Internship Suite',
+    icon: 'FileSpreadsheet',
+    tag: 'Business Automation',
     description:
-      'I automated classification of 140,000+ raw repository labels into a standardized taxonomy using TF-IDF vectorization and linear SVM classification.',
-    stack: 'Python, Scikit-learn',
+      'A collaborative AI-powered operations and business automation portfolio built during the SafeX Solutions Summer Internship, featuring semantic FAQ chatbots, invoice automation engines, and customer support routing assistants.',
+    stack: 'Python, Streamlit, Scikit-learn, Pandas, NumPy, Pytest',
     impact:
-      'Cuts manual issue sorting time on large open-source repositories.',
-    category: 'Natural Language Processing',
-    githubUrl: 'https://github.com/arsalanqasim/triageiq',
+      'Coordinated as Group Leader for 9 interns. Developed custom accuracy-scoring evaluation benchmarks and built a unified Streamlit multi-page dashboard router with namespace isolation.',
+    category: 'AI & Automation Suite',
+    githubUrl: 'https://github.com/arsalanqasim/safex-knowledge-assistant',
     detailedSpecs: {
-      input: 'Unstructured issue text and markdown',
-      output: 'Standardized label category',
-      approach: 'TF-IDF + linear SVM / SGD classifier',
+      input: 'Intern onboarding queries, invoice metadata, customer support messages',
+      output: 'Semantic search answers, calculated invoice JSON, classified support intents',
+      approach: 'TF-IDF semantic lookup + dynamic tax/discount calculations + Streamlit navigation routing',
     },
   },
 ];
@@ -88,18 +161,25 @@ export const GLYCOTWIN_HIGHLIGHTS = [
 
 export const OPERATIONAL_HISTORY: HistoryItem[] = [
   {
-    period: 'Present',
-    role: 'AI & Automation Specialist',
-    company: 'Freelance',
+    period: 'June 2026 – Present',
+    role: 'AI / ML & Automation Intern (Group Leader)',
+    company: 'SafeX Solutions · Remote, Pakistan',
     description:
-      'I build end-to-end AI/ML systems — from data pipelines and model training to deployment. I work with PyTorch, HuggingFace, LangChain, RAG pipelines, and OpenAI/Anthropic APIs.',
+      'Led a 9-intern development team coordinating weekly deliverables and repository merges. Developed a semantic FAQ retrieval chatbot (TF-IDF + Cosine similarity), engineered an Invoice Automation parser, prototyped an AI Customer Support Agent, and built a custom multi-page Streamlit dashboard router hosting all team sandboxes.',
   },
   {
     period: '2024 – Present',
     role: 'Automation Engineer',
-    company: 'Upwork — E-commerce client, Slovenia',
+    company: 'Upwork (E-commerce Client, Slovenia)',
     description:
-      'I built a Streamlit app that streamlined Shopify workflows across 20+ stores in 5+ countries. Upload time dropped from 45 to 5 minutes (~90% reduction) via Judge.me API integration. Delivered 3,000+ products with one-click multilingual localization.',
+      'Streamlined end-to-end Shopify product listing workflows across 20+ stores in 5+ European countries. Reduced per-product upload time from 45 to 5 minutes (~90% reduction) by engineering solutions from custom Selenium scraping to direct Judge.me API integrations, delivering 3,000+ localized products.',
+  },
+  {
+    period: 'Present',
+    role: 'Freelance AI & Automation Specialist',
+    company: 'Independent Contractor',
+    description:
+      'Design and engineer custom AI/ML pipelines and workflow automations, including RAG architectures, model fine-tuning, automated web scraping agents, and LangChain/Gemini API integrations.',
   },
 ];
 
@@ -107,30 +187,31 @@ export const SKILL_GROUPS: SkillGroup[] = [
   {
     title: 'Machine Learning',
     items: [
-      { name: 'PyTorch', usedIn: 'GlycoTwin, drowsiness detection, DQN lab' },
-      { name: 'Neural ODEs', usedIn: 'GlycoTwin — continuous glucose dynamics' },
-      { name: 'Scikit-learn', usedIn: 'Issue triage classifier' },
-      { name: 'Computer Vision', usedIn: 'YOLOv8s, MediaPipe, OpenCV' },
+      { name: 'PyTorch & Scikit-learn', usedIn: 'GlycoTwin, drowsiness detection, DQN lab, TriageIQ' },
+      { name: 'Transformers & LSTM', usedIn: 'GlycoTwin sequence models, DistilBERT issue triage' },
+      { name: 'Neural ODEs', usedIn: 'GlycoTwin — continuous glucose dynamics modeling' },
+      { name: 'Computer Vision', usedIn: 'YOLOv8s, MediaPipe Face Mesh, FastSAM, Depth Anything V2, OpenCV' },
       { name: 'Reinforcement Learning', usedIn: 'Dueling/Double DQN drone navigation' },
-      { name: 'NLP', usedIn: 'TF-IDF + SVM issue classification' },
+      { name: 'RAG & Agentic LLMs', usedIn: 'OpportunityPulse AI state machine, Verity Slack agent, EcoFlow plan-reflection' },
     ],
   },
   {
-    title: 'Tools & Languages',
+    title: 'Tools & Full-Stack',
     items: [
-      { name: 'Python', usedIn: 'All projects' },
-      { name: 'NumPy & Pandas', usedIn: 'Data processing, simulation environments' },
-      { name: 'Streamlit & FastAPI', usedIn: 'Automation apps and APIs' },
-      { name: 'Docker & Git', usedIn: 'Version control and deployment' },
-      { name: 'HuggingFace & LangChain', usedIn: 'LLM integrations and RAG' },
+      { name: 'Python & TypeScript', usedIn: 'Used across all projects and web applications' },
+      { name: 'React 18 & Vite', usedIn: 'OpportunityPulse AI client, EcoFlow monitoring dashboard, portfolio' },
+      { name: 'Streamlit & FastAPI', usedIn: 'TriageIQ API & UI, SafeX Solutions dashboard' },
+      { name: 'Supabase & PostgreSQL', usedIn: 'OpportunityPulse AI data persistence & RLS' },
+      { name: 'Model Context Protocol', usedIn: 'Verity (Brave Search MCP), EcoFlow tool server execution' },
+      { name: 'Docker & MLflow', usedIn: 'TriageIQ model tracking and containerized deployment, Verity hosting' },
     ],
   },
   {
-    title: 'Automation',
+    title: 'Automation & Testing',
     items: [
-      { name: 'n8n', usedIn: 'API connections and workflow automation' },
-      { name: 'Make', usedIn: 'Multi-step e-commerce routing' },
-      { name: 'Web scraping', usedIn: 'BeautifulSoup, Playwright, Selenium' },
+      { name: 'Web Scraping / Ingestion', usedIn: 'Trafilatura & youtube-transcript-api (Verity), Selenium (Upwork)' },
+      { name: 'Workflow Orchestration', usedIn: 'n8n pipelines, Make e-commerce routing, GitHub Actions CI/CD' },
+      { name: 'Testing Frameworks', usedIn: 'Vitest & Playwright (OpportunityPulse AI), Pytest (SafeX, TriageIQ)' },
     ],
   },
 ];
@@ -139,25 +220,25 @@ export const CURRENT_FOCUS: FocusItem[] = [
   {
     category: 'Building',
     items: [
-      'GlycoTwin — hybrid Neural ODE models for glycemic prediction',
-      'Driver drowsiness system — refining YOLOv8s + MediaPipe fusion',
-      'Expanding RL agents in custom simulation environments',
+      'GlycoTwin — refining hybrid sequence encoders and Neural ODE solvers',
+      'OpportunityPulse AI — extending matching algorithms and cover letter customizer',
+      'Autonomous Slack and terminal agents utilizing custom MCP tool integrations',
     ],
   },
   {
     category: 'Learning',
     items: [
-      'Advanced computer vision architectures (U-Net, segmentation)',
-      'Cloud infrastructure and secure API management',
-      'End-to-end MLOps — Docker, MLflow, deployment pipelines',
+      'Advanced deep learning architectures (state space models, multi-modal perception)',
+      'Enterprise orchestration frameworks and serverless network containment',
+      'Scale and rate-limit mitigation patterns for client agent deployments',
     ],
   },
   {
     category: 'Open to',
     items: [
-      'AI Engineer and ML developer roles',
-      'Internships in AI agent development and model deployment',
-      'Open-source collaborations in Python and PyTorch',
+      'AI/ML Engineer and Generative AI Developer positions',
+      'Agentic application engineering and full-stack AI roles',
+      'Remote global freelance engagements or major city relocation (Islamabad, Lahore, Karachi)',
     ],
   },
 ];
