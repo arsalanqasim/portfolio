@@ -179,8 +179,19 @@ export default function PortfolioChatbot() {
         }
       }
     } catch (err: unknown) {
-      const message = err instanceof Error ? err.message : 'Something went wrong.';
-      setErrorMessage(message);
+      console.error('Rango Chat Error:', err);
+      
+      // Graceful fallback messages to keep recruiter experience premium
+      let friendlyError = "Rango is currently experiencing temporary high demand or connection issues. Please try sending your message again in a few seconds, or feel free to reach out to Arsalan directly at arsalanqasim400@gmail.com!";
+      
+      if (err instanceof Error) {
+        const msg = err.message;
+        if (msg.includes('Too many chat requests') || msg.includes('Too many requests') || msg.includes('429')) {
+          friendlyError = "You have sent several messages recently. Please take a short break and try again in 10 minutes, or feel free to email Arsalan directly at arsalanqasim400@gmail.com!";
+        }
+      }
+      
+      setErrorMessage(friendlyError);
       // Remove any trailing empty streaming message if it failed at the start
       setMessages((prev) => prev.filter((msg) => msg.text !== ''));
     } finally {

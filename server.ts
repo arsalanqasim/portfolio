@@ -234,39 +234,56 @@ async function startServer() {
       // Fetch the lazily-initialized Gemini client
       const ai = getGeminiClient();
 
-      // Set headers for Server-Sent Events (SSE)
+      const MODELS_FALLBACK = ['gemini-3.5-flash', 'gemini-2.0-flash', 'gemini-1.5-flash'];
+      let responseStream: any = null;
+      let lastError: any = null;
+
+      for (const modelName of MODELS_FALLBACK) {
+        try {
+          responseStream = await ai.models.generateContentStream({
+            model: modelName,
+            contents: formattedContents,
+            config: {
+              systemInstruction: getSystemInstruction(),
+              temperature: 0.7,
+              topP: 0.95,
+              safetySettings: [
+                {
+                  category: HarmCategory.HARM_CATEGORY_HARASSMENT,
+                  threshold: HarmBlockThreshold.BLOCK_LOW_AND_ABOVE,
+                },
+                {
+                  category: HarmCategory.HARM_CATEGORY_HATE_SPEECH,
+                  threshold: HarmBlockThreshold.BLOCK_LOW_AND_ABOVE,
+                },
+                {
+                  category: HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT,
+                  threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
+                },
+                {
+                  category: HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT,
+                  threshold: HarmBlockThreshold.BLOCK_LOW_AND_ABOVE,
+                },
+              ]
+            }
+          });
+          // Break loop on success
+          break;
+        } catch (err: any) {
+          console.warn(`[Fallback] Model "${modelName}" failed to start:`, err.message);
+          lastError = err;
+        }
+      }
+
+      if (!responseStream) {
+        throw lastError || new Error('All fallback models failed to respond.');
+      }
+
+      // Set headers for Server-Sent Events (SSE) only after successfully starting stream
       res.writeHead(200, {
         'Content-Type': 'text/event-stream',
         'Cache-Control': 'no-cache',
         'Connection': 'keep-alive',
-      });
-
-      const responseStream = await ai.models.generateContentStream({
-        model: 'gemini-3.5-flash',
-        contents: formattedContents,
-        config: {
-          systemInstruction: getSystemInstruction(),
-          temperature: 0.7,
-          topP: 0.95,
-          safetySettings: [
-            {
-              category: HarmCategory.HARM_CATEGORY_HARASSMENT,
-              threshold: HarmBlockThreshold.BLOCK_LOW_AND_ABOVE,
-            },
-            {
-              category: HarmCategory.HARM_CATEGORY_HATE_SPEECH,
-              threshold: HarmBlockThreshold.BLOCK_LOW_AND_ABOVE,
-            },
-            {
-              category: HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT,
-              threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
-            },
-            {
-              category: HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT,
-              threshold: HarmBlockThreshold.BLOCK_LOW_AND_ABOVE,
-            },
-          ]
-        }
       });
 
       for await (const chunk of responseStream) {
