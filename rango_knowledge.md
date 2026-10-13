@@ -47,8 +47,6 @@
 2. **Automation Engineer** | Upwork Client, Slovenia (2024 – Present)
    - Streamlined Shopify listing workflows across 20+ stores in 5+ European countries.
    - Reduced product upload time by 90% (from 45 minutes to 5 minutes) via custom Selenium scrapers and Judge.me API integrations, successfully localizing 3,000+ products.
-3. **Freelance AI & Automation Specialist** | Independent (2024 – Present)
-   - Designs and engineers AI/ML pipelines and workflows, including RAG architectures, model fine-tuning, and LLM integrations.
 
 ---
 
