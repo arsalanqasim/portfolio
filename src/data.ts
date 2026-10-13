@@ -174,13 +174,6 @@ export const OPERATIONAL_HISTORY: HistoryItem[] = [
     description:
       'Streamlined end-to-end Shopify product listing workflows across 20+ stores in 5+ European countries. Reduced per-product upload time from 45 to 5 minutes (~90% reduction) by engineering solutions from custom Selenium scraping to direct Judge.me API integrations, delivering 3,000+ localized products.',
   },
-  {
-    period: 'Present',
-    role: 'Freelance AI & Automation Specialist',
-    company: 'Independent Contractor',
-    description:
-      'Design and engineer custom AI/ML pipelines and workflow automations, including RAG architectures, model fine-tuning, automated web scraping agents, and LangChain/Gemini API integrations.',
-  },
 ];
 
 export const SKILL_GROUPS: SkillGroup[] = [
@@ -189,7 +182,7 @@ export const SKILL_GROUPS: SkillGroup[] = [
     items: [
       { name: 'PyTorch & Scikit-learn', usedIn: 'GlycoTwin, drowsiness detection, DQN lab, TriageIQ' },
       { name: 'Transformers & LSTM', usedIn: 'GlycoTwin sequence models, DistilBERT issue triage' },
-      { name: 'Neural ODEs', usedIn: 'GlycoTwin — continuous glucose dynamics modeling' },
+      { name: 'Neural ODEs', usedIn: 'GlycoTwin — physics-informed glucose dynamics' },
       { name: 'Computer Vision', usedIn: 'YOLOv8s, MediaPipe Face Mesh, FastSAM, Depth Anything V2, OpenCV' },
       { name: 'Reinforcement Learning', usedIn: 'Dueling/Double DQN drone navigation' },
       { name: 'RAG & Agentic LLMs', usedIn: 'OpportunityPulse AI state machine, Verity Slack agent, EcoFlow plan-reflection' },
@@ -199,11 +192,11 @@ export const SKILL_GROUPS: SkillGroup[] = [
     title: 'Tools & Full-Stack',
     items: [
       { name: 'Python & TypeScript', usedIn: 'Used across all projects and web applications' },
-      { name: 'React 18 & Vite', usedIn: 'OpportunityPulse AI client, EcoFlow monitoring dashboard, portfolio' },
-      { name: 'Streamlit & FastAPI', usedIn: 'TriageIQ API & UI, SafeX Solutions dashboard' },
+      { name: 'React 18/19 & Vite', usedIn: 'OpportunityPulse AI client, EcoFlow monitoring dashboard, portfolio' },
+      { name: 'Streamlit & FastAPI', usedIn: 'GlycoTwin production backend, TriageIQ API & UI, SafeX Solutions dashboard' },
       { name: 'Supabase & PostgreSQL', usedIn: 'OpportunityPulse AI data persistence & RLS' },
       { name: 'Model Context Protocol', usedIn: 'Verity (Brave Search MCP), EcoFlow tool server execution' },
-      { name: 'Docker & MLflow', usedIn: 'TriageIQ model tracking and containerized deployment, Verity hosting' },
+      { name: 'Docker & MLflow', usedIn: 'GlycoTwin containerized backend, TriageIQ model tracking, Verity hosting' },
     ],
   },
   {
@@ -211,7 +204,7 @@ export const SKILL_GROUPS: SkillGroup[] = [
     items: [
       { name: 'Web Scraping / Ingestion', usedIn: 'Trafilatura & youtube-transcript-api (Verity), Selenium (Upwork)' },
       { name: 'Workflow Orchestration', usedIn: 'n8n pipelines, Make e-commerce routing, GitHub Actions CI/CD' },
-      { name: 'Testing Frameworks', usedIn: 'Vitest & Playwright (OpportunityPulse AI), Pytest (SafeX, TriageIQ)' },
+      { name: 'Testing Frameworks', usedIn: 'Pytest (GlycoTwin 122-test harness, SafeX, TriageIQ), Vitest & Playwright (OpportunityPulse AI)' },
     ],
   },
 ];
