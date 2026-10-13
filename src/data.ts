@@ -12,15 +12,15 @@ export const PROJECTS: Project[] = [
     icon: 'Activity',
     tag: 'Final Year Project',
     description:
-      'Developing a hybrid neuro-symbolic system for personalized glycemic response prediction, combining LSTM/Transformer encoders for metabolic pattern learning with biological mass-balance constrained Neural ODEs, and meal-image nutrition estimation using FastSAM and Depth Anything V2.',
-    stack: 'Python, PyTorch, SciPy, TorchDiffeq, FastSAM, Depth Anything V2',
+      'Physics-informed digital twin for personalized glycemic response prediction: a biological mass-balance ODE core (meal absorption + glucose clearance) calibrated per patient, with a neural residual benchmarked as an artifact. Now being hardened to production grade — consolidated 8-module repo with a 122-test verification harness.',
+    stack: 'Python, PyTorch, SciPy, TorchDiffeq, FastAPI, FastSAM, Depth Anything V2',
     impact:
-      'Aims to generate physiologically realistic continuous glucose curves and precise portion-size estimates from patient metrics and meal photos.',
+      'OhioT1DM leave-one-patient-out: hybrid 48.14 vs physics-only 48.48 mg/dL RMSE — a statistical tie documented as an honest negative result; D1NAMO exact tie at 51.58. Personalized simple models beat deep/hybrid alternatives across 3 datasets, 2 diabetes types, 6 architectures.',
     category: 'Deep Learning & Bioinformatics',
     detailedSpecs: {
-      input: 'OhioT1DM / Shanghai T2DM datasets, patient physiological metrics, meal images',
+      input: 'OhioT1DM / D1NAMO datasets, patient physiological metrics, meal images',
       output: 'Personalized continuous glucose curves, nutrition and portion estimates',
-      approach: 'Neural ODE solver with mass-balance constraints + multi-modal encoders',
+      approach: 'Per-patient calibrated Neural ODE + physics core; neural residual ships as benchmarked artifact',
     },
   },
   {
@@ -143,7 +143,7 @@ export const PROJECTS: Project[] = [
     impact:
       'Coordinated as Group Leader for 9 interns. Developed custom accuracy-scoring evaluation benchmarks and built a unified Streamlit multi-page dashboard router with namespace isolation.',
     category: 'AI & Automation Suite',
-    githubUrl: 'https://github.com/arsalanqasim/safex-knowledge-assistant',
+    githubUrl: 'https://github.com/arsalanqasim/safex-internship-portfolio',
     detailedSpecs: {
       input: 'Intern onboarding queries, invoice metadata, customer support messages',
       output: 'Semantic search answers, calculated invoice JSON, classified support intents',
@@ -154,14 +154,14 @@ export const PROJECTS: Project[] = [
 
 export const GLYCOTWIN_HIGHLIGHTS = [
   { label: 'Domain', value: 'Bioinformatics & deep learning' },
-  { label: 'Core stack', value: 'Python, PyTorch, TorchDiffeq' },
-  { label: 'Approach', value: 'Neural ODEs with biological constraints' },
-  { label: 'Status', value: 'In progress — final year project' },
+  { label: 'Core stack', value: 'Python, PyTorch, TorchDiffeq, FastAPI' },
+  { label: 'Approach', value: 'Physics-informed ODEs, per-patient calibration' },
+  { label: 'Status', value: 'Production-grade conversion — final year project' },
 ];
 
 export const OPERATIONAL_HISTORY: HistoryItem[] = [
   {
-    period: 'June 2026 – Present',
+    period: 'June 2026 – August 2026',
     role: 'AI / ML & Automation Intern (Group Leader)',
     company: 'SafeX Solutions · Remote, Pakistan',
     description:
@@ -220,7 +220,7 @@ export const CURRENT_FOCUS: FocusItem[] = [
   {
     category: 'Building',
     items: [
-      'GlycoTwin — refining hybrid sequence encoders and Neural ODE solvers',
+      'GlycoTwin — hardening to production grade: real benchmarks, consolidated backend, deployment, weighed-portion meal study',
       'OpportunityPulse AI — extending matching algorithms and cover letter customizer',
       'Autonomous Slack and terminal agents utilizing custom MCP tool integrations',
     ],
