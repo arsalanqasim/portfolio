@@ -26,12 +26,12 @@ export default function FeaturedWork() {
             GlycoTwin
           </h3>
           <p className="text-ink-secondary leading-relaxed">
-            My final year project — a digital twin for glycemic response prediction.
-            I'm combining sequence encoders with Neural ODEs that respect biological
-            constraints, and using computer vision to estimate nutrition from meal photos.
+            My final year project — a physics-informed digital twin for glycemic response prediction.
+            A biological mass-balance ODE core calibrated per patient, with a neural residual benchmarked
+            as an artifact — and negative results documented as carefully as wins.
           </p>
           <p className="mt-4 text-sm text-ink-muted">
-            Datasets: OhioT1DM, Shanghai T2DM · Stack: PyTorch, SciPy, TorchDiffeq
+            Datasets: OhioT1DM, D1NAMO · Stack: PyTorch, SciPy, TorchDiffeq, FastAPI
           </p>
         </div>
 
