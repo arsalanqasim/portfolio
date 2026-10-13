@@ -29,7 +29,7 @@
 - **Current Status**: Final Year Artificial Intelligence student (expected graduation January 2027) at COMSATS University Islamabad.
 - **CGPA**: 3.34 / 4.0
 - **Location**: Islamabad, Pakistan
-- **Core Philosophy**: Fusing deep mathematical rigor with software engineering. He believes in discipline and consistency. He is a calisthenics practitioner, drawing parallels between physical body progression and iterative code refinement.
+- **Core Philosophy**: Fusing deep mathematical rigor with software engineering. He believes in discipline and consistency. He documents negative results as carefully as wins. He is a calisthenics practitioner, drawing parallels between physical body progression and iterative code refinement.
 - **Email**: arsalanqasim400@gmail.com
 - **GitHub**: https://github.com/arsalanqasim
 - **LinkedIn**: https://www.linkedin.com/in/arsalan-qasim-416a7b258
@@ -40,7 +40,7 @@
 - **Automation & Testing**: Web Scraping (Selenium, Trafilatura, BeautifulSoup), youtube-transcript-api, Workflow Orchestration (n8n, Make), CI/CD (GitHub Actions), Testing (Vitest, Playwright, Pytest).
 
 ### Professional Experience
-1. **AI / ML & Automation Intern (Group Leader)** | SafeX Solutions (June 2026 – Present)
+1. **AI / ML & Automation Intern (Group Leader)** | SafeX Solutions (June 2026 – August 2026)
    - Led a 9-intern development team coordinating weekly deliverables and repository merges.
    - Developed a semantic FAQ retrieval chatbot using TF-IDF and Cosine similarity.
    - Engineered an Invoice Automation parser and built a custom multi-page Streamlit dashboard router.
@@ -54,14 +54,15 @@
 
 ## 4. Project Catalog (Facts and Specs Only)
 
-### 1. GlycoTwin (Neuro-Symbolic Digital Twin)
-- **Status**: Final Year Project (In Progress), 2024 - Present
+### 1. GlycoTwin (Physics-Informed Digital Twin)
+- **Status**: Final Year Project (In Progress), 2024 - Present. Currently being hardened to production grade: consolidated 8-module repo (`arsalanqasim/GlycoTwin`) with a 122-test verification harness.
 - **Category**: Deep Learning & Bioinformatics
-- **Summary**: Hybrid neuro-symbolic system for personalized glycemic response prediction, combining sequence encoders (LSTM/Transformer) for metabolic pattern learning with biological mass-balance constrained Neural ODEs.
-- **Highlights**: Volumetric Nutrition Quantifier module using FastSAM and Depth Anything V2 to estimate portion sizes from meal photos.
-- **Stack**: Python, PyTorch, SciPy, TorchDiffeq, FastSAM, Depth Anything V2.
-- **Inputs**: OhioT1DM / Shanghai T2DM datasets, patient physiological metrics, meal images.
+- **Summary**: Physics-informed digital twin for personalized glycemic response prediction: a biological mass-balance ODE core (meal absorption + glucose clearance) calibrated per patient, with a neural residual benchmarked as an artifact.
+- **Highlights**: Volumetric Nutrition Quantifier module using FastSAM and Depth Anything V2 to estimate portion sizes from meal photos; degrades gracefully (assumed plate scale + loud warning) when no reference object is present.
+- **Stack**: Python, PyTorch, SciPy, TorchDiffeq, FastAPI, FastSAM, Depth Anything V2.
+- **Inputs**: OhioT1DM / D1NAMO datasets, patient physiological metrics, meal images.
 - **Outputs**: Personalized continuous glucose curves, nutrition and portion estimates.
+- **Benchmarks**: OhioT1DM leave-one-patient-out — hybrid 48.14 vs physics-only 48.48 mg/dL RMSE (a statistical tie, documented as an honest negative result); D1NAMO exact tie at 51.58. Personalized simple models beat deep/hybrid alternatives across 3 datasets, 2 diabetes types, 6 architectures.
 
 ### 2. OpportunityPulse AI (Full-Stack Agentic AI)
 - **Category**: Agentic Web App
@@ -109,6 +110,6 @@
 ---
 
 ## 5. Current Focus & Professional Goals
-- **Building**: Refining GlycoTwin continuous glucose models, expanding OpportunityPulse AI matching algorithms, and creating custom MCP-driven terminal agents.
+- **Building**: Hardening GlycoTwin to production grade (real benchmarks, consolidated backend, deployment, weighed-portion meal study), expanding OpportunityPulse AI matching algorithms, and creating custom MCP-driven terminal agents.
 - **Learning**: Advanced deep learning architectures (State Space Models, multimodal systems), enterprise serverless orchestration, and API rate-limiting patterns.
 - **Open to**: AI/ML Engineer, Generative AI Developer, and Agentic Application engineering positions. Open to global remote work, freelance contracts, or relocation to Islamabad, Lahore, or Karachi.
