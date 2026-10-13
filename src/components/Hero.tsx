@@ -24,7 +24,7 @@ export default function Hero() {
           </h1>
 
           <p className="text-lg text-ink-secondary leading-relaxed max-w-xl">
-            I'm Arsalan — a final-year AI student at COMSATS Islamabad and group leader intern. 
+            I'm Arsalan — a final-year AI student at COMSATS Islamabad and former SafeX group-lead intern. 
             I build end-to-end AI systems, multi-agent architectures, RAG pipelines, and workflow automations 
             that deliver measurable efficiency.
           </p>
