@@ -16,14 +16,12 @@ import About from './components/About';
 import SectionWrapper from './components/SectionWrapper';
 import PortfolioChatbot from './components/PortfolioChatbot';
 import { SpeedInsights } from '@vercel/speed-insights/react';
-import { AnimationProvider, useAnimation } from './context/AnimationContext';
 import DustParticles from './components/animations/DustParticles';
 
 const SECTIONS: Section[] = ['home', 'work', 'experience', 'skills', 'about'];
 
-function MainPortfolio() {
+export default function App() {
   const [activeSection, setActiveSection] = useState<Section>('home');
-  const { mode } = useAnimation();
 
   useEffect(() => {
     const observers: IntersectionObserver[] = [];
@@ -50,8 +48,8 @@ function MainPortfolio() {
 
   return (
     <div className="min-h-screen flex flex-col bg-canvas text-ink relative overflow-x-hidden">
-      {/* Mode 1: Atmosphere Particles & Tumbleweed */}
-      {mode === 'atmosphere' && <DustParticles />}
+      {/* Living Desert Atmosphere: Windblown Dust Particles & Rolling Tumbleweed */}
+      <DustParticles />
 
       <Header activeSection={activeSection} />
 
@@ -101,13 +99,5 @@ function MainPortfolio() {
       <PortfolioChatbot />
       <SpeedInsights />
     </div>
-  );
-}
-
-export default function App() {
-  return (
-    <AnimationProvider>
-      <MainPortfolio />
-    </AnimationProvider>
   );
 }
