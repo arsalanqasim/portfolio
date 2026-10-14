@@ -32,12 +32,12 @@ export default function SectionWrapper({
       className={`scroll-mt-24 py-16 md:py-20 ${className}`}
     >
       <div className="mb-10 md:mb-12">
-        <p className="section-label mb-2">{label}</p>
-        <h2 className="font-serif text-3xl sm:text-4xl font-semibold text-ink tracking-tight">
+        <p className="section-label mb-2 flex items-center gap-1.5">{label}</p>
+        <h2 className="western-font text-2xl sm:text-3xl text-ink font-normal tracking-wide">
           {title}
         </h2>
         {subtitle && (
-          <p className="mt-3 text-ink-secondary max-w-2xl leading-relaxed">{subtitle}</p>
+          <p className="mt-3 font-serif text-ink-secondary max-w-2xl leading-relaxed text-base italic">{subtitle}</p>
         )}
       </div>
       {children}

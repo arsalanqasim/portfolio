@@ -7,6 +7,7 @@ import { useState, useRef, useEffect, FormEvent } from 'react';
 import { Send, X, User, Bot, ArrowRight, RefreshCw, MessageSquare } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import ReactMarkdown from 'react-markdown';
+import { westernAudio } from '../utils/westernAudio';
 
 interface ChatMessage {
   id: string;
@@ -16,14 +17,14 @@ interface ChatMessage {
 }
 
 const SUGGESTED_PROMPTS = [
-  'What projects has Arsalan built?',
-  'Tell me about GlycoTwin',
-  "What's his tech stack?",
-  'Is he open to roles?',
+  'What bounties has Arsalan conquered?',
+  'Tell me about his client automation victories',
+  "Inspect his Full-Stack AI arsenal",
+  'Is he available to hire?',
 ];
 
 const WELCOME_MESSAGE =
-  "Hi! I'm Arsalan's AI assistant, Rango. Ask me about his projects, experience, skills, or whether he's open to opportunities.";
+  "Tip of the ten-gallon hat to you, stranger! I'm Rango, Arsalan's deputy on these digital plains. Ask me about his multi-agent architectures, computer vision pipelines, or high-yield client automations — I've got the facts straight from the ledger!";
 
 const SESSION_STORAGE_KEY = 'rango_chat_history';
 
@@ -253,12 +254,18 @@ export default function PortfolioChatbot() {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.8 }}
             transition={{ duration: 0.2 }}
-            onClick={() => setIsOpen(true)}
-            className="fixed bottom-6 right-6 z-40 p-4 bg-accent hover:bg-accent-hover text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-200 cursor-pointer flex items-center justify-center group border border-border/10"
-            title="Open chat assistant"
-            aria-label="Open chat assistant"
+            onClick={() => {
+              westernAudio.playGuitarTwang();
+              setIsOpen(true);
+            }}
+            className="fixed bottom-6 right-6 z-40 px-4 py-3 bg-accent hover:bg-accent-hover text-white rounded-full shadow-2xl transition-all duration-200 cursor-pointer flex items-center justify-center group border-2 border-border-strong hover:scale-105"
+            title="Consult Deputy Rango"
+            aria-label="Consult Deputy Rango"
           >
-            <MessageSquare className="h-6 w-6 group-hover:scale-110 transition-transform duration-200" />
+            <div className="flex items-center gap-2 font-western text-xs tracking-wide">
+              <span className="text-sm">★</span>
+              <span>Ask Deputy Rango</span>
+            </div>
           </motion.button>
         )}
 
@@ -272,28 +279,37 @@ export default function PortfolioChatbot() {
             className="fixed bottom-6 right-6 z-40 w-[90vw] sm:w-[420px] h-[580px] max-h-[85vh] flex flex-col bg-surface/90 backdrop-blur-xl border border-border rounded-2xl shadow-2xl overflow-hidden"
           >
             {/* Header */}
-            <div className="border-b border-border px-4 py-3.5 flex items-center justify-between bg-canvas/40 backdrop-blur-md">
+            <div className="border-b-2 border-border px-4 py-3.5 flex items-center justify-between bg-surface">
               <div className="flex items-center gap-2.5">
-                <div className="p-1.5 rounded-lg bg-accent-soft text-accent">
-                  <Bot className="h-4 w-4" />
+                <div className="p-1.5 rounded bg-accent text-white font-western text-xs">
+                  ★
                 </div>
                 <div>
-                  <h3 className="text-sm font-semibold text-ink">Ask Rango</h3>
-                  <p className="text-[10px] text-ink-muted">Arsalan's AI Assistant</p>
+                  <h3 className="western-font text-sm text-ink flex items-center gap-1.5">
+                    DEPUTY RANGO
+                    <span className="text-[10px] px-1.5 py-0.5 rounded bg-accent/15 text-accent font-serif italic">AI Companion</span>
+                  </h3>
+                  <p className="font-serif text-[11px] text-ink-muted">Arsalan's Right-Hand Agent</p>
                 </div>
               </div>
               <div className="flex items-center gap-1">
                 <button
-                  onClick={handleResetChat}
+                  onClick={() => {
+                    westernAudio.playCylinderClick();
+                    handleResetChat();
+                  }}
                   title="Reset conversation"
-                  className="p-1.5 text-ink-muted hover:text-ink hover:bg-canvas rounded-lg transition cursor-pointer"
+                  className="p-1.5 text-ink-muted hover:text-ink hover:bg-canvas rounded transition cursor-pointer"
                 >
                   <RefreshCw className="h-3.5 w-3.5" />
                 </button>
                 <button
-                  onClick={() => setIsOpen(false)}
+                  onClick={() => {
+                    westernAudio.playCylinderClick();
+                    setIsOpen(false);
+                  }}
                   title="Close"
-                  className="p-1.5 text-ink-muted hover:text-ink hover:bg-canvas rounded-lg transition cursor-pointer"
+                  className="p-1.5 text-ink-muted hover:text-ink hover:bg-canvas rounded transition cursor-pointer"
                 >
                   <X className="h-4 w-4" />
                 </button>

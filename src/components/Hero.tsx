@@ -4,8 +4,9 @@
  */
 
 import { motion } from 'motion/react';
-import { ArrowDown, Github, Linkedin, Mail } from 'lucide-react';
+import { ArrowDown, Github, Linkedin, Mail, ShieldAlert } from 'lucide-react';
 import { CONTACT, RESUME_PATH, PROFILE_IMAGE } from '../data';
+import { westernAudio } from '../utils/westernAudio';
 
 export default function Hero() {
   return (
@@ -17,41 +18,47 @@ export default function Hero() {
           transition={{ duration: 0.5, ease: 'easeOut' }}
           className="md:col-span-7 space-y-6"
         >
-          <p className="section-label">AI / ML & Agentic Systems Engineer</p>
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded bg-accent/10 border border-accent/30 text-accent font-western text-xs tracking-wider">
+            <span>★</span>
+            <span>SHERIFF OF FULL-STACK AI · ISLAMABAD</span>
+          </div>
 
-          <h1 className="font-serif text-4xl sm:text-5xl lg:text-[3.25rem] font-semibold text-ink leading-[1.15] tracking-tight">
-            I build machine learning systems and agentic applications that scale.
+          <h1 className="western-font text-3xl sm:text-4xl lg:text-[2.75rem] font-normal text-ink leading-[1.2] tracking-normal">
+            I engineer full-stack machine learning systems and intelligent agents that scale.
           </h1>
 
-          <p className="text-lg text-ink-secondary leading-relaxed max-w-xl">
-            I'm Arsalan — a final-year AI student at COMSATS Islamabad and group leader intern. 
-            I build end-to-end AI systems, multi-agent architectures, RAG pipelines, and workflow automations 
-            that deliver measurable efficiency.
+          <p className="font-serif text-lg text-ink-secondary leading-relaxed max-w-xl italic">
+            I'm Arsalan — final-year AI student at COMSATS Islamabad and group leader intern. 
+            On these digital plains, I engineer end-to-end AI applications across multi-agent systems, 
+            computer vision pipelines, NLP, and high-impact production automations.
           </p>
 
           <div className="flex flex-wrap gap-3 pt-1">
             <a
               href="#work"
-              className="inline-flex items-center gap-2 rounded-lg bg-accent px-5 py-2.5 text-sm font-semibold text-white hover:bg-accent-hover transition-colors"
+              onClick={() => westernAudio.playPaperRustle()}
+              className="inline-flex items-center gap-2 rounded border-2 border-accent bg-accent px-5 py-2.5 text-sm font-serif font-bold text-white hover:bg-accent-hover transition-colors shadow-sm"
             >
-              See my work
+              <span>Inspect Bounties</span>
               <ArrowDown className="h-4 w-4" />
             </a>
             <a
               href={RESUME_PATH}
               download="Arsalan_Qasim.pdf"
-              className="inline-flex items-center gap-2 rounded-lg border border-border bg-surface px-5 py-2.5 text-sm font-medium text-ink-secondary hover:border-accent hover:text-accent transition-colors"
+              onClick={() => westernAudio.playCylinderClick()}
+              className="inline-flex items-center gap-2 rounded border-2 border-border-strong bg-surface px-5 py-2.5 text-sm font-serif font-semibold text-ink-secondary hover:border-accent hover:text-accent transition-colors shadow-sm"
             >
-              Download CV
+              Affidavit (CV)
             </a>
           </div>
 
-          <div className="flex flex-wrap gap-4 pt-2">
+          <div className="flex flex-wrap gap-4 pt-2 font-serif text-sm">
             <a
               href={CONTACT.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-sm text-ink-muted hover:text-accent transition-colors"
+              onClick={() => westernAudio.playPaperRustle()}
+              className="inline-flex items-center gap-1.5 text-ink-muted hover:text-accent transition-colors"
             >
               <Github className="h-4 w-4" />
               GitHub
@@ -60,17 +67,19 @@ export default function Hero() {
               href={CONTACT.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-sm text-ink-muted hover:text-accent transition-colors"
+              onClick={() => westernAudio.playPaperRustle()}
+              className="inline-flex items-center gap-1.5 text-ink-muted hover:text-accent transition-colors"
             >
               <Linkedin className="h-4 w-4" />
               LinkedIn
             </a>
             <a
               href={`mailto:${CONTACT.email}`}
-              className="inline-flex items-center gap-1.5 text-sm text-ink-muted hover:text-accent transition-colors"
+              onClick={() => westernAudio.playPaperRustle()}
+              className="inline-flex items-center gap-1.5 text-ink-muted hover:text-accent transition-colors"
             >
               <Mail className="h-4 w-4" />
-              Email
+              Telegram / Dispatch
             </a>
           </div>
         </motion.div>
@@ -79,17 +88,41 @@ export default function Hero() {
           initial={{ opacity: 0, scale: 0.96 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5, delay: 0.15, ease: 'easeOut' }}
-          className="md:col-span-5 flex justify-center md:justify-end"
+          className="md:col-span-5 flex flex-col items-center md:items-end"
         >
-          <div className="relative w-56 h-56 sm:w-64 md:w-72 md:h-72">
-            <div className="absolute inset-0 rounded-2xl bg-accent-soft border border-accent-muted/30 rotate-3" />
-            <div className="relative w-full h-full rounded-2xl border border-border overflow-hidden shadow-sm bg-surface">
-              <img
-                src={PROFILE_IMAGE}
-                alt="Arsalan Qasim"
-                className="w-full h-full object-cover object-center"
-              />
+          {/* Wanted Poster Card */}
+          <div className="relative w-64 sm:w-72 p-3 bg-surface border-4 border-double border-border-strong rounded-sm shadow-xl rotate-1 hover:rotate-0 transition-transform duration-300">
+            <div className="border border-dashed border-border-strong p-3 bg-canvas/30 text-center">
+              <div className="western-font text-xs tracking-widest text-accent mb-1">
+                ★ REWARD FOR EXCELLENCE ★
+              </div>
+              <div className="western-font text-xl text-ink tracking-wider mb-2">
+                WANTED
+              </div>
+              <div className="relative w-full h-56 border-2 border-border-strong overflow-hidden bg-surface mb-2 shadow-inner">
+                <img
+                  src={PROFILE_IMAGE}
+                  alt="Arsalan Qasim"
+                  className="w-full h-full object-cover object-center grayscale hover:grayscale-0 transition-all duration-500"
+                />
+              </div>
+              <div className="western-font text-sm text-ink font-semibold">
+                ARSALAN QASIM
+              </div>
+              <p className="font-serif text-xs text-ink-muted italic mt-0.5">
+                Full Stack AI / ML Gunslinger
+              </p>
+              <div className="mt-2 pt-2 border-t border-border-strong/60 flex items-center justify-between text-[10px] font-serif text-ink-secondary">
+                <span>Town of Dirt, 2026</span>
+                <span className="text-accent font-semibold">COMSATS Uni</span>
+              </div>
             </div>
+          </div>
+
+          {/* Spirit of the West Quote Tag */}
+          <div className="mt-3 max-w-[280px] p-2 rounded bg-surface/80 border border-border text-center font-serif text-[11px] text-ink-muted italic shadow-xs">
+            "No man can walk out on his own story."
+            <span className="block not-italic text-[10px] text-accent mt-0.5 font-western">— The Spirit of the West</span>
           </div>
         </motion.div>
       </div>

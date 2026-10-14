@@ -54,9 +54,9 @@ export default function App() {
 
         <SectionWrapper
           id="work"
-          label="Selected work"
-          title="Projects I've built"
-          subtitle="Machine learning, computer vision, and automation — with real metrics where I have them."
+          label="★ BOUNTIES HUNTED"
+          title="Field Deployments & Projects"
+          subtitle="Full-stack machine learning, computer vision, and multi-agent systems — backed by hard mathematical rigor and verifiable benchmarks."
         >
           <div className="space-y-10">
             <FeaturedWork />
@@ -66,26 +66,26 @@ export default function App() {
 
         <SectionWrapper
           id="experience"
-          label="Experience"
-          title="Where I've worked"
-          subtitle="Freelance AI engineering and client automation — measured by outcomes, not slide decks."
+          label="★ THE FRONTIER LEDGER"
+          title="Where I've Rode & Delivered"
+          subtitle="Engineering leadership and client automations across 20+ European storefronts — slashing turnaround times by 90%."
         >
           <Experience />
         </SectionWrapper>
 
         <SectionWrapper
           id="skills"
-          label="Skills"
-          title="What I work with"
-          subtitle="Hover a skill to see where I've used it."
+          label="★ THE GUNSMITH & ARSENAL"
+          title="Weapons of Choice"
+          subtitle="Hover a tool or framework to inspect where it was fired in the field."
         >
           <Skills />
         </SectionWrapper>
 
         <SectionWrapper
           id="about"
-          label="About"
-          title="A bit about me"
+          label="★ THE DISPATCH"
+          title="The Tale of Arsalan"
         >
           <About />
         </SectionWrapper>
