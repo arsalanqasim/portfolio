@@ -9,6 +9,7 @@ import { Download, Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { RESUME_PATH } from '../data';
 import CinematicControls from './CinematicControls';
+import AnimationSwitcher from './animations/AnimationSwitcher';
 import { westernAudio } from '../utils/westernAudio';
 
 interface HeaderProps {
@@ -52,23 +53,23 @@ export default function Header({ activeSection }: HeaderProps) {
           : 'bg-canvas/85 backdrop-blur-sm'
       }`}
     >
-      <div className="mx-auto flex h-16 max-w-5xl items-center justify-between px-6">
+      <div className="mx-auto flex h-16 max-w-5xl items-center justify-between px-4 sm:px-6">
         <button
           onClick={() => scrollToSection('home')}
-          className="western-font text-lg md:text-xl font-normal text-ink tracking-wide hover:text-accent transition-colors cursor-pointer flex items-center gap-1.5"
+          className="western-font text-base sm:text-lg md:text-xl font-normal text-ink tracking-wide hover:text-accent transition-colors cursor-pointer flex items-center gap-1.5 shrink-0"
         >
           <span className="text-accent text-sm">★</span>
           Arsalan Qasim
         </button>
 
-        <nav className="hidden md:flex items-center gap-1">
+        <nav className="hidden lg:flex items-center gap-1">
           {NAV_ITEMS.map((item) => {
             const active = activeSection === item.id;
             return (
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className={`relative px-3 py-1 text-sm font-serif transition-colors cursor-pointer ${
+                className={`relative px-2.5 py-1 text-sm font-serif transition-colors cursor-pointer ${
                   active ? 'text-accent font-semibold' : 'text-ink-secondary hover:text-ink'
                 }`}
               >
@@ -85,17 +86,21 @@ export default function Header({ activeSection }: HeaderProps) {
           })}
         </nav>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1.5 sm:gap-2">
+          {/* Animation Mode Switcher */}
+          <AnimationSwitcher />
+
+          {/* Sound & Lighting Toggles */}
           <CinematicControls />
 
           <a
             href={RESUME_PATH}
             download="Arsalan_Qasim.pdf"
             onClick={() => westernAudio.playCylinderClick()}
-            className="hidden sm:inline-flex items-center gap-1.5 rounded border-2 border-border-strong bg-surface px-3 py-1.5 text-xs font-serif font-semibold text-ink-secondary hover:border-accent hover:text-accent transition-colors shadow-sm"
+            className="hidden md:inline-flex items-center gap-1.5 rounded border-2 border-border-strong bg-surface px-2.5 py-1.5 text-xs font-serif font-semibold text-ink-secondary hover:border-accent hover:text-accent transition-colors shadow-sm shrink-0"
           >
-            <span>Affidavit (CV)</span>
-            <Download className="h-3.5 w-3.5" />
+            <span>CV</span>
+            <Download className="h-3 w-3" />
           </a>
 
           <button
@@ -103,7 +108,7 @@ export default function Header({ activeSection }: HeaderProps) {
               westernAudio.playCylinderClick();
               setMobileOpen(!mobileOpen);
             }}
-            className="md:hidden p-1.5 text-ink-muted hover:text-ink transition border border-border rounded"
+            className="lg:hidden p-1.5 text-ink-muted hover:text-ink transition border border-border rounded"
             aria-label="Toggle menu"
           >
             {mobileOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
@@ -117,7 +122,7 @@ export default function Header({ activeSection }: HeaderProps) {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden border-t-2 border-border bg-surface px-6 pb-5 shadow-lg"
+            className="lg:hidden border-t-2 border-border bg-surface px-6 pb-5 shadow-lg"
           >
             <div className="flex flex-col gap-1 pt-3 font-serif">
               {NAV_ITEMS.map((item) => (
