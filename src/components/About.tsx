@@ -72,6 +72,10 @@ export default function About() {
           software craft, and measurable commercial results intersect (like improving agent task success rates to 92.9% 
           or slashing client listing turnaround by 90%).
         </p>
+        <p className="text-ink-secondary leading-relaxed">
+          I document negative results as carefully as wins. On my final-year project, the physics-only model tied the hybrid on held-out patients — 
+          and that tie went into the report as an honest finding, not a marketing claim. Evaluators get solutions, not excuses.
+        </p>
       </motion.div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
@@ -89,7 +93,7 @@ export default function About() {
           </div>
           <p className="text-sm font-semibold text-ink">BS Artificial Intelligence</p>
           <p className="text-sm text-ink-muted mt-0.5">COMSATS University Islamabad</p>
-          <p className="text-xs text-ink-muted mt-2 font-mono">7th semester completed · Expected Jan 2027 · CGPA 3.34 / 4.0</p>
+          <p className="text-xs text-ink-muted mt-2 font-mono">8th semester · Expected Jan 2027 · CGPA 3.34 / 4.0</p>
         </motion.div>
 
         <motion.div

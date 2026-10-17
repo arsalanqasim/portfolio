@@ -12,15 +12,15 @@ export const PROJECTS: Project[] = [
     icon: 'Activity',
     tag: 'Final Year Project',
     description:
-      'Developing a hybrid neuro-symbolic system for personalized glycemic response prediction, combining LSTM/Transformer encoders for metabolic pattern learning with biological mass-balance constrained Neural ODEs, and meal-image nutrition estimation using FastSAM and Depth Anything V2.',
-    stack: 'Python, PyTorch, SciPy, TorchDiffeq, FastSAM, Depth Anything V2',
+      'Physics-informed digital twin for personalized glycemic response prediction: a biological mass-balance ODE core (meal absorption + glucose clearance) calibrated per patient, with a neural residual benchmarked as an artifact. Now being hardened to production grade — consolidated 8-module repo with a 122-test verification harness.',
+    stack: 'Python, PyTorch, SciPy, TorchDiffeq, FastAPI, FastSAM, Depth Anything V2',
     impact:
-      'Aims to generate physiologically realistic continuous glucose curves and precise portion-size estimates from patient metrics and meal photos.',
+      'OhioT1DM leave-one-patient-out: hybrid 48.14 vs physics-only 48.48 mg/dL RMSE — a statistical tie documented as an honest negative result; D1NAMO exact tie at 51.58. Personalized simple models beat deep/hybrid alternatives across 3 datasets, 2 diabetes types, 6 architectures.',
     category: 'Deep Learning & Bioinformatics',
     detailedSpecs: {
-      input: 'OhioT1DM / Shanghai T2DM datasets, patient physiological metrics, meal images',
+      input: 'OhioT1DM / D1NAMO datasets, patient physiological metrics, meal images',
       output: 'Personalized continuous glucose curves, nutrition and portion estimates',
-      approach: 'Neural ODE solver with mass-balance constraints + multi-modal encoders',
+      approach: 'Per-patient calibrated Neural ODE + physics core; neural residual ships as benchmarked artifact',
     },
   },
   {
@@ -143,7 +143,7 @@ export const PROJECTS: Project[] = [
     impact:
       'Coordinated as Group Leader for 9 interns. Developed custom accuracy-scoring evaluation benchmarks and built a unified Streamlit multi-page dashboard router with namespace isolation.',
     category: 'AI & Automation Suite',
-    githubUrl: 'https://github.com/arsalanqasim/safex-knowledge-assistant',
+    githubUrl: 'https://github.com/arsalanqasim/safex-internship-portfolio',
     detailedSpecs: {
       input: 'Intern onboarding queries, invoice metadata, customer support messages',
       output: 'Semantic search answers, calculated invoice JSON, classified support intents',
@@ -154,14 +154,14 @@ export const PROJECTS: Project[] = [
 
 export const GLYCOTWIN_HIGHLIGHTS = [
   { label: 'Domain', value: 'Bioinformatics & deep learning' },
-  { label: 'Core stack', value: 'Python, PyTorch, TorchDiffeq' },
-  { label: 'Approach', value: 'Neural ODEs with biological constraints' },
-  { label: 'Status', value: 'In progress — final year project' },
+  { label: 'Core stack', value: 'Python, PyTorch, TorchDiffeq, FastAPI' },
+  { label: 'Approach', value: 'Physics-informed ODEs, per-patient calibration' },
+  { label: 'Status', value: 'Production-grade conversion — final year project' },
 ];
 
 export const OPERATIONAL_HISTORY: HistoryItem[] = [
   {
-    period: 'June 2026 – Present',
+    period: 'June 2026 – August 2026',
     role: 'AI / ML & Automation Intern (Group Leader)',
     company: 'SafeX Solutions · Remote, Pakistan',
     description:
@@ -174,13 +174,6 @@ export const OPERATIONAL_HISTORY: HistoryItem[] = [
     description:
       'Streamlined end-to-end Shopify product listing workflows across 20+ stores in 5+ European countries. Reduced per-product upload time from 45 to 5 minutes (~90% reduction) by engineering solutions from custom Selenium scraping to direct Judge.me API integrations, delivering 3,000+ localized products.',
   },
-  {
-    period: 'Present',
-    role: 'Freelance AI & Automation Specialist',
-    company: 'Independent Contractor',
-    description:
-      'Design and engineer custom AI/ML pipelines and workflow automations, including RAG architectures, model fine-tuning, automated web scraping agents, and LangChain/Gemini API integrations.',
-  },
 ];
 
 export const SKILL_GROUPS: SkillGroup[] = [
@@ -189,7 +182,7 @@ export const SKILL_GROUPS: SkillGroup[] = [
     items: [
       { name: 'PyTorch & Scikit-learn', usedIn: 'GlycoTwin, drowsiness detection, DQN lab, TriageIQ' },
       { name: 'Transformers & LSTM', usedIn: 'GlycoTwin sequence models, DistilBERT issue triage' },
-      { name: 'Neural ODEs', usedIn: 'GlycoTwin — continuous glucose dynamics modeling' },
+      { name: 'Neural ODEs', usedIn: 'GlycoTwin — physics-informed glucose dynamics' },
       { name: 'Computer Vision', usedIn: 'YOLOv8s, MediaPipe Face Mesh, FastSAM, Depth Anything V2, OpenCV' },
       { name: 'Reinforcement Learning', usedIn: 'Dueling/Double DQN drone navigation' },
       { name: 'RAG & Agentic LLMs', usedIn: 'OpportunityPulse AI state machine, Verity Slack agent, EcoFlow plan-reflection' },
@@ -199,11 +192,11 @@ export const SKILL_GROUPS: SkillGroup[] = [
     title: 'Tools & Full-Stack',
     items: [
       { name: 'Python & TypeScript', usedIn: 'Used across all projects and web applications' },
-      { name: 'React 18 & Vite', usedIn: 'OpportunityPulse AI client, EcoFlow monitoring dashboard, portfolio' },
-      { name: 'Streamlit & FastAPI', usedIn: 'TriageIQ API & UI, SafeX Solutions dashboard' },
+      { name: 'React 18/19 & Vite', usedIn: 'OpportunityPulse AI client, EcoFlow monitoring dashboard, portfolio' },
+      { name: 'Streamlit & FastAPI', usedIn: 'GlycoTwin production backend, TriageIQ API & UI, SafeX Solutions dashboard' },
       { name: 'Supabase & PostgreSQL', usedIn: 'OpportunityPulse AI data persistence & RLS' },
       { name: 'Model Context Protocol', usedIn: 'Verity (Brave Search MCP), EcoFlow tool server execution' },
-      { name: 'Docker & MLflow', usedIn: 'TriageIQ model tracking and containerized deployment, Verity hosting' },
+      { name: 'Docker & MLflow', usedIn: 'GlycoTwin containerized backend, TriageIQ model tracking, Verity hosting' },
     ],
   },
   {
@@ -211,7 +204,7 @@ export const SKILL_GROUPS: SkillGroup[] = [
     items: [
       { name: 'Web Scraping / Ingestion', usedIn: 'Trafilatura & youtube-transcript-api (Verity), Selenium (Upwork)' },
       { name: 'Workflow Orchestration', usedIn: 'n8n pipelines, Make e-commerce routing, GitHub Actions CI/CD' },
-      { name: 'Testing Frameworks', usedIn: 'Vitest & Playwright (OpportunityPulse AI), Pytest (SafeX, TriageIQ)' },
+      { name: 'Testing Frameworks', usedIn: 'Pytest (GlycoTwin 122-test harness, SafeX, TriageIQ), Vitest & Playwright (OpportunityPulse AI)' },
     ],
   },
 ];
@@ -220,7 +213,7 @@ export const CURRENT_FOCUS: FocusItem[] = [
   {
     category: 'Building',
     items: [
-      'GlycoTwin — refining hybrid sequence encoders and Neural ODE solvers',
+      'GlycoTwin — hardening to production grade: real benchmarks, consolidated backend, deployment, weighed-portion meal study',
       'OpportunityPulse AI — extending matching algorithms and cover letter customizer',
       'Autonomous Slack and terminal agents utilizing custom MCP tool integrations',
     ],

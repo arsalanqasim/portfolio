@@ -29,14 +29,14 @@ export default function FeaturedWork() {
             GlycoTwin
           </h3>
           <p className="font-serif text-ink-secondary leading-relaxed">
-            Final year research initiative — a neuro-symbolic digital twin for continuous glycemic 
-            response prediction. Combines sequence encoders with mass-balance constrained 
-            Neural ODEs and volumetric nutrition estimation via FastSAM and Depth Anything V2.
+            My final year project — a physics-informed digital twin for glycemic response prediction.
+            A biological mass-balance ODE core calibrated per patient, with a neural residual benchmarked
+            as an artifact — and negative results documented as carefully as wins.
           </p>
           <div className="mt-4 pt-3 border-t border-border/80 flex flex-wrap gap-2 text-xs font-serif text-ink-muted">
-            <span className="font-semibold text-accent">Datasets:</span> OhioT1DM, Shanghai T2DM
+            <span className="font-semibold text-accent">Datasets:</span> OhioT1DM, D1NAMO
             <span className="text-ink-muted/50">|</span>
-            <span className="font-semibold text-accent">Arsenal:</span> PyTorch, SciPy, TorchDiffeq, FastSAM
+            <span className="font-semibold text-accent">Arsenal:</span> PyTorch, SciPy, TorchDiffeq, FastAPI
           </div>
         </div>
 
